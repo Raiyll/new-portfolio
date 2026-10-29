@@ -1,1326 +1,3569 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AHMAD RAFI FADHILAH</title>
-  <link rel="icon" type="image/jpeg" href="img/L.jpeg"/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/simple-icons-font@v9/font/simple-icons.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
+  <title>Ahmad Rafi Fadhilah | Portfolio &amp; Resume</title>
+  <meta name="description"
+    content="Interactive macOS portfolio and full resume of Ahmad Rafi Fadhilah, Full-Stack Developer at PT Tri Nindya Utama (Laravel, React, PHP, MySQL, IoT) in Tangerang, Banten.">
+  <link rel="icon" type="image/jpeg" href="img/L.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+
   <style>
-    :root {
-      --bg-cream: #fdfaf7;
-      --accent-brown: #3d2b1f;
-      --primary-orange: #c96e4b;
-      --soft-border: #e8dfd5;
+    /* Palette: 2 core surface/ink tiers + 1 warm terracotta copper accent, WCAG AA compliant (R-25, R-29)
+       TIP WALLPAPER LOCK SCREEN:
+       Ganti --lock-wallpaper-image di bawah dengan foto sendiri, contoh:
+       --lock-wallpaper-image: url('img/L.jpeg');
+       atau klik tombol "Pilih Foto" / "Wallpaper" langsung di pojok kanan atas Lock Screen. */
+    :root,
+    [data-theme="dark"] {
+      --lock-wallpaper-image: url('img/L.jpeg');
+      --lock-scrim: rgba(12, 14, 18, 0.72);
+      --bg-desktop: #0c0e12;
+      --bg-wallpaper-accent: rgba(224, 122, 95, 0.12);
+      --bg-window: #161920;
+      --bg-elevated: #1f242d;
+      --bg-input: #101319;
+      --bg-chrome: rgba(22, 25, 32, 0.88);
+      --text-primary: #f5f2eb;
+      --text-secondary: #b7b0a6;
+      --border-subtle: #2b313d;
+      --border-strong: #404959;
+      --accent: #e07a5f;
+      --accent-hover: #eb8b72;
+      --accent-ink: #111317;
+      --accent-surface: rgba(224, 122, 95, 0.15);
+      --tl-close: #ff5f56;
+      --tl-min: #ffbd2e;
+      --tl-zoom: #27c93f;
+      --status-err: #e76f51;
+      --window-shadow: 0 16px 38px rgba(0, 0, 0, 0.48);
     }
 
-    * { 
-      font-family: 'Space Grotesk', sans-serif; 
+    [data-theme="light"] {
+      --lock-scrim: rgba(230, 223, 211, 0.76);
+      --bg-desktop: #e6dfd3;
+      --bg-wallpaper-accent: rgba(166, 65, 34, 0.08);
+      --bg-window: #fcfaf5;
+      --bg-elevated: #ede6da;
+      --bg-input: #ffffff;
+      --bg-chrome: rgba(252, 250, 245, 0.9);
+      --text-primary: #1d1612;
+      --text-secondary: #52453c;
+      --border-subtle: #d4cab8;
+      --border-strong: #b3a692;
+      --accent: #a64122;
+      --accent-hover: #8d3519;
+      --accent-ink: #ffffff;
+      --accent-surface: rgba(166, 65, 34, 0.11);
+      --tl-close: #e0443e;
+      --tl-min: #dea123;
+      --tl-zoom: #1aab29;
+      --status-err: #b91c1c;
+      --window-shadow: 0 12px 28px rgba(29, 22, 18, 0.12);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-desktop);
+      color: var(--text-primary);
+      line-height: 1.5;
       scroll-behavior: smooth;
-    }
-    
-    body { 
-      background-color: var(--bg-cream); 
-      color: var(--accent-brown);
-      position: relative;
-      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
-    /* Particle Canvas Background */
-    #particle-canvas {
+    body {
+      min-height: 100dvh;
+      background-color: var(--bg-desktop);
+      background-image: radial-gradient(circle at 50% 0%, var(--bg-wallpaper-accent), transparent 65%);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 88px;
+    }
+
+    code,
+    pre,
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Interactive affordance and keyboard focus baseline (R-32, R-39) */
+    a[href],
+    button,
+    summary,
+    select,
+    label[for],
+    input[type="checkbox"],
+    input[type="radio"],
+    [role="button"],
+    [role="tab"],
+    [role="switch"] {
+      cursor: pointer;
+    }
+
+    button:disabled,
+    input:disabled,
+    textarea:disabled,
+    [aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: -100px;
+      left: 12px;
+      z-index: 3000;
+      background: var(--accent);
+      color: var(--accent-ink);
+      padding: 10px 16px;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    /* MacBook Lock Screen / Login Landing View (First screen when opening laptop) */
+    .mac-lockscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background-color: var(--bg-desktop);
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(224, 122, 95, 0.18), transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(92, 124, 250, 0.14), transparent 60%),
+        radial-gradient(circle at 50% 25%, var(--bg-wallpaper-accent), transparent 70%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(14px, 2.5vw, 24px);
+      overflow-y: auto;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .mac-lockscreen[data-lock-wp="photo"],
+    .mac-lockscreen[data-lock-wp="custom"] {
+      background-image: var(--lock-wallpaper-image);
+    }
+
+    .mac-lockscreen[data-lock-wp="dusk"] {
+      background-image:
+        radial-gradient(circle at 50% 18%, rgba(224, 122, 95, 0.34), transparent 58%),
+        radial-gradient(circle at 18% 82%, rgba(235, 139, 114, 0.2), transparent 52%),
+        linear-gradient(160deg, var(--bg-desktop) 0%, var(--bg-elevated) 100%);
+    }
+
+    .lock-wallpaper-scrim {
+      position: fixed;
+      inset: 0;
       z-index: 0;
       pointer-events: none;
+      background: radial-gradient(circle at 50% 45%, transparent 10%, var(--bg-desktop) 100%);
+      opacity: 0.35;
+      transition: opacity 0.2s ease, background-color 0.2s ease;
     }
 
-    /* Animated Gradient Mesh Background */
-    .gradient-mesh {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      opacity: 0.6;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(201, 110, 75, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(61, 43, 31, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(255, 154, 123, 0.12) 0%, transparent 50%);
-      animation: meshMove 20s ease-in-out infinite;
-    }
-
-    @keyframes meshMove {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -30px) scale(1.05); }
-      66% { transform: translate(-20px, 20px) scale(0.98); }
-    }
-
-    /* Glass Navigation with Glow */
-    .nav-glass {
-      background: rgba(253, 250, 247, 0.75);
-      backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(201, 110, 75, 0.2);
-      box-shadow: 
-        0 8px 32px rgba(61, 43, 31, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      position: relative;
-    }
-
-    .nav-glass::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
-      opacity: 0.5;
-    }
-
-    /* Ultra Premium Glass Card */
-    .card-artisan {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid rgba(232, 223, 213, 0.6);
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 
-        0 10px 40px rgba(61, 43, 31, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-artisan::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(201, 110, 75, 0.1), transparent);
-      transform: rotate(45deg);
-      transition: all 0.6s;
-    }
-
-    .card-artisan:hover::before {
-      left: 100%;
-    }
-
-    .card-artisan:hover {
-      transform: translateY(-16px) scale(1.03);
-      box-shadow: 
-        0 30px 60px rgba(201, 110, 75, 0.2),
-        0 0 0 1px rgba(201, 110, 75, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 1);
-      border-color: rgba(201, 110, 75, 0.4);
-    }
-
-    /* Magnetic Button Effect */
-    .btn-magnetic {
-      position: relative;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    /* 3D Tilt Card Effect */
-    .tilt-card {
-      transform-style: preserve-3d;
-      transition: transform 0.3s ease;
-    }
-
-    /* Animated Badge */
-    .badge-soft {
-      background: linear-gradient(135deg, rgba(244, 238, 231, 0.9), rgba(255, 255, 255, 0.7));
-      backdrop-filter: blur(12px);
-      color: #7c5c45;
-      padding: 8px 16px;
-      border-radius: 99px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 1px solid rgba(201, 110, 75, 0.2);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .badge-soft::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background: rgba(201, 110, 75, 0.2);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.4s, height 0.4s;
-    }
-
-    .badge-soft:hover::before {
-      width: 200px;
-      height: 200px;
-    }
-
-    .badge-soft:hover {
-      border-color: var(--primary-orange);
-      background: rgba(255, 255, 255, 0.95);
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 20px rgba(201, 110, 75, 0.2);
-    }
-
-    /* Glowing Scroll Progress */
-    #scroll-progress {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary-orange), #ff9a7b, var(--primary-orange));
-      background-size: 200% 100%;
-      z-index: 1000; 
-      width: 0%;
-      box-shadow: 
-        0 0 10px rgba(201, 110, 75, 0.6),
-        0 0 20px rgba(201, 110, 75, 0.4),
-        0 0 30px rgba(201, 110, 75, 0.2);
-      animation: shimmer 3s linear infinite;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    /* Premium Button with Ripple */
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-brown) 0%, #2a1f16 100%);
-      color: white;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 
-        0 4px 20px rgba(61, 43, 31, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    .btn-primary:hover::before {
-      width: 400px;
-      height: 400px;
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, var(--primary-orange) 0%, #e07a5f 100%);
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 
-        0 12px 30px rgba(201, 110, 75, 0.4),
-        0 0 0 4px rgba(201, 110, 75, 0.1);
-    }
-
-    .btn-primary:active {
-      transform: translateY(-2px) scale(1.02);
-    }
-
-    /* Morphing Image Frame with Shadow */
-    .img-frame {
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      background: linear-gradient(135deg, var(--primary-orange), #ff9a7b);
-      animation: morph 10s ease-in-out infinite;
-      box-shadow: 
-        0 20px 60px rgba(201, 110, 75, 0.3),
-        0 40px 80px rgba(201, 110, 75, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      position: relative;
-    }
-
-    .img-frame::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: inherit;
-      background: linear-gradient(45deg, var(--primary-orange), #ff9a7b, var(--primary-orange));
-      background-size: 300% 300%;
-      animation: gradientRotate 6s ease infinite;
-      z-index: -1;
-      filter: blur(10px);
-      opacity: 0.7;
-    }
-
-    @keyframes morph {
-      0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-      25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-      50% { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
-      75% { border-radius: 80% 20% 50% 50% / 20% 75% 25% 80%; }
-      100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    }
-
-    @keyframes gradientRotate {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Floating Animation */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(2deg); }
-    }
-
-    .float {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    /* Project Card Enhanced */
-    .bento-card {
-      position: relative;
-      border-radius: 28px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(232, 223, 213, 0.5);
-      box-shadow: 0 10px 40px rgba(61, 43, 31, 0.08);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .bento-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent, rgba(201, 110, 75, 0.1));
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .bento-card:hover::after {
+    .mac-lockscreen[data-lock-wp="photo"] .lock-wallpaper-scrim,
+    .mac-lockscreen[data-lock-wp="custom"] .lock-wallpaper-scrim {
+      background: var(--lock-scrim);
       opacity: 1;
     }
 
-    /* Contact Glass Card with Shine */
-    .contact-glass {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(24px) saturate(150%);
-      border: 1px solid rgba(232, 223, 213, 0.6);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .lock-particle-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .mac-lockscreen.is-unlocked {
+      display: none !important;
+    }
+
+    .lock-topbar {
       position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.82rem;
+      color: var(--text-primary);
+    }
+
+    .lock-status-items {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .lock-center {
+      position: relative;
+      z-index: 2;
+      margin: auto;
+      width: 100%;
+      max-width: 460px;
+      text-align: center;
+      padding: 20px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lock-date {
+      font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+
+    .lock-clock {
+      font-size: clamp(3.2rem, 8vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .lock-account-card {
+      position: relative;
+      width: 100%;
+      background-color: var(--bg-window);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: clamp(20px, 3vw, 28px);
+      box-shadow: var(--window-shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    /* Interactive Lock Screen Cat Companion perched on the account card */
+    .lock-cat-stage {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -64px;
+      margin-bottom: -4px;
+      z-index: 3;
+    }
+
+    .cat-speech-bubble {
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+      max-width: 290px;
+      white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .contact-glass::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
-      transform: rotate(45deg);
-      animation: shine 3s infinite;
+    .lock-cat-btn {
+      min-width: 96px;
+      min-height: 58px;
+      background: transparent;
+      border: none;
+      padding: 2px 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      border-radius: 12px;
+      transition: transform 0.18s ease;
     }
 
-    @keyframes shine {
-      0% { left: -50%; }
-      100% { left: 150%; }
-    }
-
-    .contact-glass:hover {
-      background: rgba(255, 255, 255, 0.95);
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 
-        0 20px 50px rgba(201, 110, 75, 0.15),
-        0 0 0 1px rgba(201, 110, 75, 0.2);
-    }
-
-    /* Input Glass Effect */
-    .input-glass {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(232, 223, 213, 0.5);
-      transition: all 0.3s;
-    }
-
-    .input-glass:focus {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: var(--primary-orange);
-      outline: none;
-      box-shadow: 
-        0 0 0 4px rgba(201, 110, 75, 0.1),
-        0 8px 24px rgba(201, 110, 75, 0.15);
+    .lock-cat-btn:hover {
       transform: translateY(-2px);
     }
 
-    /* Stat Number with Gradient */
-    .stat-number {
-      font-size: 3.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent-brown) 0%, var(--primary-orange) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 2px 8px rgba(201, 110, 75, 0.2));
-      animation: statGlow 3s ease-in-out infinite;
+    .lock-cat-btn:hover+.cat-speech-bubble,
+    .lock-cat-stage.is-purring .cat-speech-bubble {
+      border-color: var(--accent);
+      transform: translateY(-2px);
     }
 
-    @keyframes statGlow {
-      0%, 100% { filter: drop-shadow(0 2px 8px rgba(201, 110, 75, 0.2)); }
-      50% { filter: drop-shadow(0 4px 16px rgba(201, 110, 75, 0.4)); }
+    .lock-cat-svg {
+      width: 92px;
+      height: 56px;
+      overflow: visible;
+      display: block;
     }
 
-    /* Social Icon with 3D Effect */
-    .social-icon {
-      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      position: relative;
+    .cat-tail {
+      transform-origin: 72px 44px;
+      animation: catTailSway 3.2s ease-in-out infinite;
     }
 
-    .social-icon::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, var(--primary-orange), #ff9a7b);
-      border-radius: inherit;
+    .cat-ear-l,
+    .cat-ear-r {
+      transform-origin: center bottom;
+      transition: transform 0.15s ease;
+    }
+
+    .lock-cat-stage.is-twitching .cat-ear-l {
+      transform: rotate(-10deg);
+    }
+
+    .lock-cat-stage.is-twitching .cat-ear-r {
+      transform: rotate(10deg);
+    }
+
+    .cat-heart {
       opacity: 0;
-      transition: opacity 0.3s;
-      z-index: -1;
-      filter: blur(8px);
+      transform: translateY(4px) scale(0.8);
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .social-icon:hover::before {
+    .lock-cat-stage.is-purring .cat-heart {
       opacity: 1;
+      transform: translateY(-3px) scale(1);
     }
 
-    .social-icon:hover {
-      transform: translateY(-10px) scale(1.15) rotateZ(5deg);
-      box-shadow: 0 12px 30px rgba(201, 110, 75, 0.3);
+    .lock-cat-stage.is-paused .cat-tail {
+      animation-play-state: paused;
     }
 
-    /* Cursor Trail Effect */
-    .cursor-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--primary-orange);
+    @keyframes catTailSway {
+
+      0%,
+      100% {
+        transform: rotate(-8deg);
+      }
+
+      50% {
+        transform: rotate(12deg);
+      }
+    }
+
+    .lock-avatar-wrap {
+      width: 112px;
+      height: 112px;
       border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.3s;
-      box-shadow: 0 0 10px var(--primary-orange);
-    }
-
-    /* Text Reveal Animation */
-    .reveal-text {
-      background: linear-gradient(90deg, var(--accent-brown) 50%, var(--primary-orange) 50%);
-      background-size: 200% 100%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textReveal 3s ease-in-out infinite;
-    }
-
-    @keyframes textReveal {
-      0%, 100% { background-position: 100% 0; }
-      50% { background-position: 0 0; }
-    }
-
-    /* Loading Bar */
-    .loading-bar {
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary-orange), #ff9a7b);
-      border-radius: 99px;
-      position: relative;
       overflow: hidden;
+      border: 3px solid var(--accent);
+      background-color: var(--bg-elevated);
     }
 
-    .loading-bar::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-      animation: loadingShine 2s infinite;
+    .lock-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    @keyframes loadingShine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+    .lock-user-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
     }
 
-    /* Glowing Text */
-    .glow-text {
-      text-shadow: 
-        0 0 10px rgba(201, 110, 75, 0.5),
-        0 0 20px rgba(201, 110, 75, 0.3),
-        0 0 30px rgba(201, 110, 75, 0.2);
-      animation: textGlow 2s ease-in-out infinite;
+    .lock-user-role {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
     }
 
-    @keyframes textGlow {
-      0%, 100% { 
-        text-shadow: 
-          0 0 10px rgba(201, 110, 75, 0.5),
-          0 0 20px rgba(201, 110, 75, 0.3),
-          0 0 30px rgba(201, 110, 75, 0.2);
-      }
-      50% { 
-        text-shadow: 
-          0 0 20px rgba(201, 110, 75, 0.8),
-          0 0 30px rgba(201, 110, 75, 0.5),
-          0 0 40px rgba(201, 110, 75, 0.3);
-      }
+    .lock-login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
     }
 
-    /* Tooltip */
-    .tooltip {
-      position: relative;
+    .lock-input-row {
+      display: flex;
+      gap: 8px;
+      width: 100%;
     }
 
-    .tooltip::before {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: 120%;
-      left: 50%;
-      transform: translateX(-50%) scale(0);
-      background: rgba(61, 43, 31, 0.95);
-      color: white;
-      padding: 8px 12px;
+    .mac-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 8px 14px;
+      background-color: var(--bg-input);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
       border-radius: 8px;
-      font-size: 0.85rem;
-      white-space: nowrap;
-      opacity: 0;
-      transition: all 0.3s;
-      pointer-events: none;
-      backdrop-filter: blur(10px);
+      font-size: 0.9rem;
     }
 
-    .tooltip:hover::before {
-      transform: translateX(-50%) scale(1);
-      opacity: 1;
-    }
-
-    /* Skeleton Loading */
-    .skeleton {
-      background: linear-gradient(90deg, rgba(232, 223, 213, 0.3) 25%, rgba(232, 223, 213, 0.5) 50%, rgba(232, 223, 213, 0.3) 75%);
-      background-size: 200% 100%;
-      animation: skeleton-loading 1.5s infinite;
-    }
-
-    @keyframes skeleton-loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    /* Scroll to top button */
-    .scroll-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(16px);
-      border-radius: 50%;
+    .lock-bottom-actions {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(201, 110, 75, 0.3);
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s;
-      z-index: 999;
-      box-shadow: 0 8px 24px rgba(61, 43, 31, 0.15);
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 8px;
     }
 
-    .scroll-top.visible {
-      opacity: 1;
-      visibility: visible;
+    /* macOS Top Menu Bar (1st of 2 elements using backdrop-filter per R-10 dose cap) */
+    .mac-menubar {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background-color: var(--bg-chrome);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .scroll-top:hover {
-      background: var(--primary-orange);
-      color: white;
-      transform: translateY(-5px);
-      box-shadow: 0 12px 32px rgba(201, 110, 75, 0.3);
+    .menubar-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .mac-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0 13px;
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
+    }
+
+    .mac-pill-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background-color: var(--accent-surface);
+    }
+
+    .mac-pill-btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .mac-pill-btn[aria-pressed="true"],
+    .mac-pill-btn.is-active {
+      background-color: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .mac-clock-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 12px;
+      border-radius: 8px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* Desktop Stage Manager Grid (3 distinct breakpoints: <680px Mobile, 680-1079px Tablet, >=1080px Desktop) */
+    .mac-desktop {
+      flex: 1;
+      width: 100%;
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (min-width: 680px) {
+      .mac-desktop {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 16px;
+        gap: 16px;
+      }
+
+      .win-span-tablet-2 {
+        grid-column: span 2;
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .mac-desktop {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        padding: 20px;
+        gap: 18px;
+      }
+
+      .win-col-5 {
+        grid-column: span 5;
+      }
+
+      .win-col-6 {
+        grid-column: span 6;
+      }
+
+      .win-col-7 {
+        grid-column: span 7;
+      }
+
+      .win-col-12 {
+        grid-column: span 12;
+      }
+    }
+
+    /* macOS Application Window (Solid opaque surface per R-10) */
+    .mac-window {
+      background-color: var(--bg-window);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: border-color 0.18s ease;
+    }
+
+    .mac-window.is-focused {
+      border-color: var(--accent);
+      box-shadow: var(--window-shadow);
+    }
+
+    .mac-window.is-maximized {
+      grid-column: 1 / -1 !important;
+    }
+
+    .mac-window.is-hidden {
+      display: none !important;
+    }
+
+    .mac-titlebar {
+      background-color: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 4px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      user-select: none;
+    }
+
+    /* macOS Traffic Light Controls with 44x44px accessible touch targets (R-03, R-39) */
+    .traffic-lights {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .tl-btn {
+      min-width: 44px;
+      min-height: 44px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+    }
+
+    .tl-btn:hover {
+      background-color: var(--bg-window);
+      border-color: var(--border-subtle);
+    }
+
+    .tl-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: #111317;
+      font-weight: 800;
+    }
+
+    .tl-dot.close {
+      background-color: var(--tl-close);
+    }
+
+    .tl-dot.minimize {
+      background-color: var(--tl-min);
+    }
+
+    .tl-dot.zoom {
+      background-color: var(--tl-zoom);
+    }
+
+    .window-title-center {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .window-title-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .window-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background-color: var(--accent-surface);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      white-space: nowrap;
+    }
+
+    .window-body {
+      padding: clamp(16px, 2.2vw, 26px);
+      flex: 1;
+    }
+
+    /* Buttons */
+    .btn-primary-mac {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 18px;
+      background-color: var(--accent);
+      color: var(--accent-ink);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      transition: background-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .btn-primary-mac:hover:not(:disabled) {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-primary-mac:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn-secondary-mac {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 16px;
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.88rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      text-decoration: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn-secondary-mac:hover:not(:disabled) {
+      border-color: var(--accent);
+      background-color: var(--accent-surface);
+    }
+
+    /* Window 1: About This Mac */
+    .about-mac-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    @media (min-width: 680px) {
+      .about-mac-grid {
+        grid-template-columns: 210px 1fr;
+      }
+    }
+
+    .mac-hardware-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .mac-portrait-ring {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+      aspect-ratio: 1 / 1;
+      margin-bottom: 10px;
+      background-color: var(--bg-input);
+    }
+
+    .mac-portrait-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-h1 {
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .specs-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 10px;
+      margin: 16px 0;
+      padding: 12px;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+    }
+
+    .spec-key {
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      display: block;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .spec-val {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Window 2: Career Experience, Education & Samsung Certifications Timeline */
+    .career-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 920px) {
+      .career-columns {
+        grid-template-columns: 7fr 5fr;
+      }
+    }
+
+    .timeline-card {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+    }
+
+    .role-badge {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background-color: var(--accent-surface);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .resume-bullets {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .resume-bullets li strong {
+      color: var(--text-primary);
+    }
+
+    .stack-stack-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Window 3: Finder Projects & Repositories */
+    .finder-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .finder-search-wrap {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .finder-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .finder-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .finder-item-row {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    @media (min-width: 820px) {
+      .finder-item-row.has-preview {
+        grid-template-columns: 300px 1fr;
+      }
+    }
+
+    .finder-preview-box {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      aspect-ratio: 16 / 9;
+      background-color: var(--bg-elevated);
+    }
+
+    .finder-preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .finder-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tag-chip {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    /* UI States: Empty, Loading, Error (R-27) */
+    .mac-state-box {
+      padding: 20px;
+      border-radius: 10px;
+      background-color: var(--bg-input);
+      border: 1px dashed var(--border-strong);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .mac-state-box.is-error {
+      border-color: var(--status-err);
+    }
+
+    /* Window 4: Preview.app Awards & Printable Resume */
+    .awards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .award-card {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Window 5: Activity Monitor Table */
+    .activity-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      background-color: var(--bg-input);
+    }
+
+    .activity-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.86rem;
+    }
+
+    .activity-table th,
+    .activity-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .activity-table th {
+      background-color: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+
+    .activity-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Window 6: Terminal.app (zsh) */
+    .zsh-box {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .zsh-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .zsh-output {
+      height: 240px;
+      overflow-y: auto;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .zsh-prompt {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .zsh-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .zsh-input-wrap {
+      flex: 1;
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-window);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 0 12px;
+      min-height: 44px;
+    }
+
+    .zsh-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      min-height: 42px;
+    }
+
+    .zsh-input:focus {
+      outline: none;
+    }
+
+    .zsh-input-wrap:focus-within {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    /* Window 7: Mail.app & Portfolio Links */
+    .mail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 860px) {
+      .mail-grid {
+        grid-template-columns: 5fr 7fr;
+      }
+    }
+
+    .contact-endpoints {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .endpoint-row {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-height: 54px;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .endpoint-row:hover {
+      border-color: var(--accent);
+      background-color: var(--accent-surface);
+    }
+
+    .mail-composer {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-2col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .form-2col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .mac-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background-color: var(--bg-window);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    /* Footer */
+    .mac-footer {
+      max-width: 1480px;
+      width: 100%;
+      margin: 8px auto 0;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* macOS Bottom Dock (2nd of 2 elements using backdrop-filter per R-10 dose cap) */
+    .mac-dock {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 950;
+      background-color: var(--bg-chrome);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      max-width: calc(100vw - 16px);
+      overflow-x: auto;
+      box-shadow: var(--window-shadow);
+    }
+
+    .dock-btn {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .dock-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .dock-btn.is-running::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    .dock-btn.is-minimized {
+      opacity: 0.75;
+      border-style: dashed;
+      border-color: var(--border-strong);
+    }
+
+    /* Apple Menu / Spotlight Modal */
+    .mac-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      background-color: rgba(8, 10, 14, 0.76);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .mac-modal-backdrop[hidden] {
+      display: none !important;
+    }
+
+    .mac-modal {
+      background-color: var(--bg-window);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 620px;
+      overflow: hidden;
+      box-shadow: var(--window-shadow);
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    @media print {
+
+      .mac-lockscreen,
+      .mac-menubar,
+      .mac-dock,
+      .traffic-lights {
+        display: none !important;
+      }
+
+      body {
+        padding-bottom: 0;
+        background: #ffffff;
+        color: #000000;
+      }
+
+      .mac-window {
+        display: block !important;
+        box-shadow: none;
+        border: 1px solid #cccccc;
+        margin-bottom: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
 
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+<body>
+  <a href="#main-workspace" class="skip-link">Skip to macOS Desktop Workspace</a>
 
-  menuBtn.addEventListener("click", function() {
-    if (mobileMenu.classList.contains("max-h-0")) {
-      mobileMenu.classList.remove("max-h-0");
-      mobileMenu.classList.add("max-h-96");
-    } else {
-      mobileMenu.classList.add("max-h-0");
-      mobileMenu.classList.remove("max-h-96");
-    }
-  });
-});
-</script>
+  <!-- MACBOOK LOCK SCREEN / LOGIN LANDING PAGE (Opens first like opening a MacBook lid) -->
+  <aside id="mac-lockscreen" class="mac-lockscreen" data-lock-wp="starry" aria-label="MacBook Login Lock Screen">
+    <div class="lock-wallpaper-scrim" aria-hidden="true"></div>
+    <canvas id="lock-particle-canvas" class="lock-particle-canvas" aria-hidden="true"></canvas>
 
-
-</body>
-
-<body class="antialiased">
-
-<!-- Gradient Mesh Background -->
-<div class="gradient-mesh"></div>
-
-<!-- Particle Canvas -->
-<canvas id="particle-canvas"></canvas>
-
-<!-- Cursor Trail -->
-<div class="cursor-dot" id="cursor-dot"></div>
-
-<!-- Scroll Progress -->
-<div id="scroll-progress"></div>
-
-<!-- Navigation -->
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-4xl nav-glass rounded-2xl px-6 py-4">
-  
-  <!-- Top Bar -->
-  <div class="flex items-center justify-between">
-    
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl overflow-hidden shadow-lg flex items-center justify-center">
-        <img src="img/L.jpeg" />
+    <div class="lock-topbar">
+      <div class="lock-status-items mono">
+        <span>Ahmad Rafi Fadhilah</span>
+        <span>·</span>
+        <span>Kab. Tangerang, Banten</span>
       </div>
-      <span class="font-bold tracking-tight text-lg">Ahmad Rafi Fadhilah</span>
-    </div>
-
-    <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center gap-8 font-medium">
-      <a href="#about" class="hover:text-[#c96e4b] transition-all hover:scale-110">About</a>
-      <a href="#skills" class="hover:text-[#c96e4b] transition-all hover:scale-110">Skills</a>
-      <a href="#projects" class="hover:text-[#c96e4b] transition-all hover:scale-110">Works</a>
-      <a href="#contact" class="btn-primary px-5 py-2 rounded-xl text-sm relative z-10">Let's Talk</a>
-    </div>
-
-    <!-- Mobile Button -->
-    <button id="menu-btn" class="md:hidden text-2xl hover:scale-110 transition-transform">
-      <i class="ri-menu-4-line"></i>
-    </button>
-
-  </div>
-
-  <!-- Mobile Menu (WAJIB di luar flex atas) -->
-  <div id="mobile-menu" 
-     class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out flex flex-col gap-6 md:hidden font-medium">
-  
-  <div class="pt-6 border-t border-white/10 mt-6 flex flex-col gap-6">
-    <a href="#about" class="hover:text-[#c96e4b] transition">About</a>
-    <a href="#skills" class="hover:text-[#c96e4b] transition">Skills</a>
-    <a href="#projects" class="hover:text-[#c96e4b] transition">Works</a>
-    <a href="#contact" class="btn-primary px-5 py-2 rounded-xl text-sm text-center">
-      Let's Talk
-    </a>
-  </div>
-
-</div>
-
-</nav>
-
-
-<main class="max-w-6xl mx-auto px-6 pt-44 pb-24 relative z-10">
-
-  <!-- Hero Section -->
-  <section id="about" class="grid lg:grid-cols-2 gap-16 items-center mb-32">
-    <div data-aos="fade-right">
-      <div class="inline-flex items-center gap-2 bg-gradient-to-r from-orange-100 to-orange-50 text-[#c96e4b] px-4 py-1.5 rounded-full text-sm font-bold mb-6 border border-orange-200/50 backdrop-blur">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-        </span>
-        Available for Freelance
-      </div>
-      
-      <h1 class="text-6xl md:text-7xl font-bold leading-[1.05] mb-6">
-        Hi, I'm<span class="text-[#c96e4b] glow-text"> FullStack</span> Developer.
-      </h1>
-      
-      <p class="text-lg text-gray-600 mb-10 max-w-lg leading-relaxed">
-  A <span class="font-bold text-[#3d2b1f]">Full-Stack Developer</span> based in Tangerang with a strong focus on clean architecture and maintainable code. Specialized in <span class="font-bold text-[#c96e4b]">Laravel & React</span>, I develop scalable and production-ready web applications with modern UI and solid backend systems.
-</p>
-
-      
-      <div class="flex flex-wrap gap-4 items-center mb-10">
-        <a href="#projects" class="btn-primary btn-magnetic px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-lg relative z-10">
-          View Projects <i class="ri-arrow-right-up-line"></i>
-        </a>
-        <a href="#contact" class="px-8 py-4 rounded-2xl font-bold flex items-center gap-2 border-2 border-[#3d2b1f] hover:bg-[#3d2b1f] hover:text-white transition-all hover:scale-105 backdrop-blur bg-white/50">
-          Contact Me <i class="ri-mail-line"></i>
-        </a>
+      <div class="lock-status-items mono">
+        <span><i class="ri-wifi-line" aria-hidden="true"></i> Wi-Fi</span>
+        <span><i class="ri-battery-2-charge-line" aria-hidden="true"></i> 100%</span>
+        <button type="button" id="lock-wp-btn" class="mac-pill-btn mono"
+          aria-label="Switch lock screen wallpaper preset">
+          <i class="ri-image-2-line" aria-hidden="true"></i>
+          <span id="lock-wp-label">Wallpaper: Starry</span>
+        </button>
+        <label for="lock-wp-upload" class="mac-pill-btn mono"
+          title="Pilih foto dari perangkat untuk wallpaper Lock Screen">
+          <i class="ri-upload-2-line" aria-hidden="true"></i>
+          <span>Pilih Foto</span>
+        </label>
+        <input type="file" id="lock-wp-upload" accept="image/*" class="sr-only"
+          aria-label="Upload custom lock screen wallpaper photo">
+        <button type="button" id="lock-motion-btn" class="mac-pill-btn mono" aria-pressed="true"
+          aria-label="Pause or play lock screen particles and cat animation">
+          <i class="ri-sparkling-2-line" aria-hidden="true"></i>
+          <span id="lock-motion-label">Particles: On</span>
+        </button>
+        <button type="button" id="lock-theme-btn" class="mac-pill-btn mono" aria-label="Toggle theme from lock screen">
+          <i class="ri-contrast-2-line" aria-hidden="true"></i>
+          <span id="lock-theme-label">Theme: Dark</span>
+        </button>
       </div>
     </div>
 
-    <div class="relative flex justify-center float" data-aos="zoom-in">
-      <div class="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 blur-[120px] opacity-50 rounded-full animate-pulse"></div>
-      <div class="img-frame w-72 h-72 md:w-96 md:h-96 overflow-hidden border-8 border-white shadow-2xl relative z-10">
-        <img src="img/gw2.png" alt="Ahmad Rafi" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
-      </div>
-      
-      <!-- Floating Elements -->
-      <div class="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-[#c96e4b] to-[#ff9a7b] rounded-2xl opacity-80 blur-xl animate-pulse"></div>
-      <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-[#3d2b1f] to-[#5a4232] rounded-full opacity-70 blur-xl animate-pulse" style="animation-delay: 1s;"></div>
-    </div>
-  </section>
-
- <!-- Achievements Section -->
-<section id="achievements" class="mb-32" data-aos="fade-up">
-  <div class="text-center mb-16">
-    <div class="inline-block px-5 py-2 bg-gradient-to-r from-orange-50 to-white rounded-full text-[#c96e4b] font-bold text-sm mb-6 border border-orange-100 backdrop-blur shadow-sm">
-      <i class="ri-trophy-line mr-1"></i> ACHIEVEMENTS
-    </div>
-    <h2 class="text-4xl md:text-5xl font-bold mb-4 reveal-text">Achievement</h2>
-    <p class="text-gray-500 text-lg max-w-2xl mx-auto">My Achievement </p>
-  </div>
-
-  <div class="grid md:grid-cols-2 gap-8">
-
-    <!-- CARD 1: GOLD -->
-    <div class="card-artisan tilt-card p-8 rounded-3xl border-t-4 border-t-yellow-400" data-aos="flip-left" data-aos-delay="100">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center bg-yellow-50 border border-yellow-200">
-          <i class="ri-medal-line text-2xl text-yellow-500"></i>
-        </div>
-        <span class="badge-soft bg-yellow-50 text-yellow-800 border-yellow-200">1st Place</span>
-      </div>
-      <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">UMKM Digital Competition · UNIPI</p>
-      <h3 class="text-2xl font-bold mb-3 hover:text-[#c96e4b] transition-colors">Jamu!</h3>
-      <p class="text-gray-500 leading-relaxed mb-4">Secured 1st place in digital innovation competition, developing an end-to-end digital solution for local UMKM businesses.</p>
-      <span class="badge-soft text-xs"><i class="ri-calendar-line mr-1"></i>2026</span>
-    </div>
-
-    <!-- CARD 2: SILVER -->
-    <div class="card-artisan tilt-card p-8 rounded-3xl border-t-4 border-t-gray-400" data-aos="flip-left" data-aos-delay="200">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center bg-gray-100 border border-gray-200">
-          <i class="ri-award-line text-2xl text-gray-500"></i>
-        </div>
-        <span class="badge-soft bg-gray-100 text-gray-600 border-gray-200">2nd Place</span>
-      </div>
-      <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">LKS ITSS Tingkat Kota</p>
-      <h3 class="text-2xl font-bold mb-3 hover:text-[#c96e4b] transition-colors">Esemka Books</h3>
-      <p class="text-gray-500 leading-relaxed mb-4">Secured 2nd place in the city-level IT Software Solution For Business, showcasing an innovative approach to digital book management.</p>
-      <span class="badge-soft text-xs"><i class="ri-calendar-line mr-1"></i>2026</span>
-    </div>
-
-  </div>
-</section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="mb-32" data-aos="fade-up">
-  <div class="text-center mb-16">
-    <div class="inline-block px-5 py-2 bg-gradient-to-r from-orange-50 to-white rounded-full text-[#c96e4b] font-bold text-sm mb-6 border border-orange-100 backdrop-blur shadow-sm">
-      TECHNICAL SKILLS
-    </div>
-    <h2 class="text-4xl md:text-5xl font-bold mb-4 reveal-text">Stacks</h2>
-    <p class="text-gray-500 text-lg max-w-2xl mx-auto">A comprehensive overview of my technical skills, tools, and languages.</p>
-  </div>
-
-  <div class="grid md:grid-cols-3 gap-8 mb-8">
-    <div class="card-artisan tilt-card p-8 rounded-3xl" data-aos="flip-left" data-aos-delay="100">
-      <div class="w-16 h-16 bg-gradient-to-br from-[#3d2b1f] to-[#5a4232] rounded-2xl flex items-center justify-center text-4xl text-white mb-6 shadow-lg">
-        <i class="si si-framework"></i>
-      </div>
-      <h3 class="text-2xl font-bold mb-5">Frameworks</h3>
-      <div class="flex flex-wrap gap-3">
-        <span class="badge-soft flex items-center gap-2"><i class="si si-react"></i> React.js</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-tailwindcss"></i> Tailwind CSS</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-laravel"></i> Laravel</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-nextdotjs"></i> Next.js</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-bootstrap"></i> Bootstrap</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-nodedotjs"></i> Node.js</span>
-      </div>
-    </div>
-
-    <div class="card-artisan tilt-card p-8 rounded-3xl border-t-4 border-t-[#c96e4b]" data-aos="flip-left" data-aos-delay="200">
-      <div class="w-16 h-16 bg-gradient-to-br from-[#3d2b1f] to-[#5a4232] rounded-2xl flex items-center justify-center text-4xl text-white mb-6 shadow-lg">
-        <i class="ri-code-line"></i>
-      </div>
-      <h3 class="text-2xl font-bold mb-5">Programming Languages</h3>
-      <div class="flex flex-wrap gap-3">
-        <span class="badge-soft flex items-center gap-2"><i class="si si-typescript"></i> TypeScript</span>
-        <span class="badge-soft flex items-center gap-2"><i class="ri-java-fill"></i> Java</span>
-        <span class="badge-soft flex items-center gap-2"><i class="ri-php-fill"></i> PHP</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-kotlin"></i> Kotlin</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-c"></i> C#</span>
-      </div>
-    </div>
-
-    <div class="card-artisan tilt-card p-8 rounded-3xl" data-aos="flip-left" data-aos-delay="300">
-      <div class="w-16 h-16 bg-gradient-to-br from-[#3d2b1f] to-[#5a4232] rounded-2xl flex items-center justify-center text-4xl text-white mb-6 shadow-lg">
-        <i class="ri-global-line"></i>
-      </div>
-      <h3 class="text-2xl font-bold mb-5">Languages</h3>
-      <div class="flex flex-wrap gap-3">
-        <span class="badge-soft flex items-center gap-2">Indonesia</span>
-        <span class="badge-soft flex items-center gap-2">English</span>
-        <span class="badge-soft flex items-center gap-2">Japan</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="flex flex-wrap justify-center gap-8">
-    <div class="card-artisan tilt-card p-8 rounded-3xl w-full md:w-[calc(33.333%-1.5rem)]" data-aos="flip-left" data-aos-delay="300">
-      <div class="w-16 h-16 bg-gradient-to-br from-[#3d2b1f] to-[#5a4232] rounded-2xl flex items-center justify-center text-4xl text-white mb-6 shadow-lg">
-        <i class="ri-database-2-fill"></i>
-      </div>
-      <h3 class="text-2xl font-bold mb-5">Database</h3>
-      <div class="flex flex-wrap gap-3">
-        <span class="badge-soft flex items-center gap-2"><i class="si si-mysql"></i> MySQL</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-mariadb"></i> MariaDB</span>
-      </div>
-    </div>
-
-    <div class="card-artisan tilt-card p-8 rounded-3xl w-full md:w-[calc(33.333%-1.5rem)]" data-aos="flip-left" data-aos-delay="300">
-      <div class="w-16 h-16 bg-gradient-to-br from-[#3d2b1f] to-[#5a4232] rounded-2xl flex items-center justify-center text-4xl text-white mb-6 shadow-lg">
-        <i class="ri-tools-fill"></i>
-      </div>
-      <h3 class="text-2xl font-bold mb-5">Other Skills</h3>
-      <div class="flex flex-wrap gap-3">
-        <span class="badge-soft flex items-center gap-2"><i class="si si-unity"></i> Unity</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-blender"></i> Blender</span>
-        <span class="badge-soft flex items-center gap-2"><i class="ri-html5-fill"></i> HTML</span>
-        <span class="badge-soft flex items-center gap-2"><i class="ri-css3-fill"></i> CSS</span>
-        <span class="badge-soft flex items-center gap-2"><i class="si si-git"></i> Git & version control</span>
-        <span class="badge-soft flex items-center gap-2"><i class="ri-figma-line"></i> UI/UX Design</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="mb-32">
-    <div class="flex items-center gap-4 mb-16" data-aos="fade-right">
-      <h2 class="text-5xl md:text-6xl font-medium italic">My Works</h2>
-      <div class="h-[2px] flex-grow bg-gradient-to-r from-gray-300 to-transparent"></div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div class="group" data-aos="fade-up">
-        <div class="bento-card mb-8 aspect-video overflow-hidden relative">
-          <img src="img/jamu2.png" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="absolute top-6 right-6">
-            <span class="bg-white/90 backdrop-blur-lg px-5 py-2 rounded-full text-sm font-bold shadow-lg border border-white/50">2026</span>
-          </div>
-          <div class="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
-            <p class="text-white text-sm">First Place Winner – UMKM Digital Competition | UNIPI</p>
-          </div>
-        </div>
-        <div class="px-2">
-          <div class="inline-block px-4 py-1.5 bg-gradient-to-r from-orange-50 to-white rounded-full text-[#c96e4b] text-xs font-bold mb-3 border border-orange-100">WEB TECHNOLOGY</div>
-          <h3 class="text-3xl md:text-4xl font-bold mb-4 hover:text-[#c96e4b] transition-colors">Jamu!</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">Secured 1st Place in the UMKM Digital Competition hosted by Universitas Insan Pembangunan Indonesia (UNIPI), demonstrating excellence in digital innovation and solution development.</p>
-          <div class="flex gap-4">
-             <a href="https://github.com/Raiyll/djamu-fe" class="tooltip w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-[var(--accent-brown)] hover:text-white hover:border-[var(--accent-brown)] transition-all hover:scale-110" data-tooltip="View Code">
-               <i class="ri-github-line text-xl"></i>
-             </a>
-             <a href="https://djamu.vercel.app/" class="tooltip w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-[var(--accent-brown)] hover:text-white hover:border-[var(--accent-brown)] transition-all hover:scale-110" data-tooltip="Live Demo">
-               <i class="ri-external-link-line text-xl"></i>
-             </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="group mt-12 md:mt-24" data-aos="fade-up" data-aos-delay="200">
-        <div class="bento-card mb-8 aspect-video overflow-hidden relative">
-          <img src="img/Loot.png" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="absolute top-6 right-6">
-            <span class="bg-white/90 backdrop-blur-lg px-5 py-2 rounded-full text-sm font-bold shadow-lg border border-white/50">2026</span>
-          </div>
-          <div class="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
-            <p class="text-white text-sm">Point of Selling Website</p>
-          </div>
-        </div>
-        <div class="px-2">
-          <div class="inline-block px-4 py-1.5 bg-gradient-to-r from-orange-50 to-white rounded-full text-[#c96e4b] text-xs font-bold mb-3 border border-orange-100">WEB TECHNOLOGY</div>
-          <h3 class="text-3xl md:text-4xl font-bold mb-4 hover:text-[#c96e4b] transition-colors">LootHub</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">Loot Hub is an all-in-one gaming POS platform that handles both real-world gear and virtual loot.
-            From mechanical keyboards to in-game currency, everything runs through a single streamlined dashboard.
-Think of it as mission control for your gaming store — efficient, organized, and built to win.</p>
-          <div class="flex gap-4">
-             <a href="https://github.com/Raiyll/LootHub" class="tooltip w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-[var(--accent-brown)] hover:text-white hover:border-[var(--accent-brown)] transition-all hover:scale-110" data-tooltip="View Code">
-               <i class="ri-github-line text-xl"></i>
-             </a>
-             <a href="#" class="tooltip w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center hover:bg-[var(--accent-brown)] hover:text-white hover:border-[var(--accent-brown)] transition-all hover:scale-110" data-tooltip="Live Demo">
-               <i class="ri-external-link-line text-xl"></i>
-             </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
- <section id="contact" class="mb-32" data-aos="fade-up">
-  <div class="text-center mb-16">
-
-    <div class="inline-flex items-center gap-2 px-5 py-2 
-            bg-gradient-to-r from-orange-50 to-white 
-            rounded-full text-[#c96e4b] font-bold text-sm 
-            border border-orange-100 backdrop-blur shadow-sm mb-6">
-  
-    <i class="ri-fingerprint-fill text-3xl mr-1"></i>
-    <span>GET IN TOUCH</span>
-
-    </div>
-
-    <h2 class="text-4xl md:text-6xl font-bold mb-6">
-      Let's Create Something<br>
-      <span class="text-[#c96e4b] glow-text">Amazing Together</span>
-    </h2>
-
-    <p class="text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-     Have an interesting project or idea? I'm ready to help bring it to life from concept to production.
-     Let's discuss how we can collaborate!
-    </p>
-     <p class="text-[#c96e4b] text-xl max-w-2xl mx-auto leading-relaxed">
-    Available for freelance projects and collaborations.
-    </p>
-
-
-  </div>
-</section>
-
-
-    <div class="grid md:grid-cols-2 gap-6 mb-12">
-      <!-- Contact Cards with Enhanced Glass Effect -->
-      <a href="https://gmail.com" class="contact-glass p-8 rounded-3xl group" data-aos="zoom-in" data-aos-delay="100">
-        <div class="w-16 h-16 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl flex items-center justify-center text-4xl text-[#c96e4b] mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
-          <i class="ri-mail-line"></i>
-        </div>
-        <h3 class="text-2xl font-bold mb-3">Email</h3>
-        <p class="text-gray-600 mb-5">Get in Touch.</p>
-        <p class="text-[#c96e4b] font-bold flex items-center gap-2 text-lg">
-          ahmadrafifadilah50@gmail.com
-          <i class="ri-arrow-right-up-line group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform"></i>
-        </p>
-      </a>
-
-      <a href="https://wa.me/6287774024460" class="contact-glass p-8 rounded-3xl group" data-aos="zoom-in" data-aos-delay="200">
-        <div class="w-16 h-16 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl flex items-center justify-center text-4xl text-[#c96e4b] mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
-          <i class="ri-whatsapp-line"></i>
-        </div>
-        <h3 class="text-2xl font-bold mb-3">WhatsApp</h3>
-        <p class="text-gray-600 mb-5">Get in Touch.</p>
-        <p class="text-[#c96e4b] font-bold flex items-center gap-2 text-lg">
-          +62 877-7402-4460
-          <i class="ri-arrow-right-up-line group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform"></i>
-        </p>
-      </a>
-
-      <a href="https://www.linkedin.com/in/ahmad-rafi-fadhilah" class="contact-glass p-8 rounded-3xl group" data-aos="zoom-in" data-aos-delay="300">
-        <div class="w-16 h-16 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl flex items-center justify-center text-4xl text-[#c96e4b] mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
-          <i class="ri-linkedin-box-line"></i>
-        </div>
-        <h3 class="text-2xl font-bold mb-3">LinkedIn</h3>
-        <p class="text-gray-600 mb-5">Get in Touch.</p>
-        <p class="text-[#c96e4b] font-bold flex items-center gap-2 text-lg">
-          linkedin.com/in/ahmad-rafi-fadhilah
-          <i class="ri-arrow-right-up-line group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform"></i>
-        </p>
-      </a>
-
-      <a href="https://github.com/Raiyll" class="contact-glass p-8 rounded-3xl group" data-aos="zoom-in" data-aos-delay="400">
-        <div class="w-16 h-16 bg-gradient-to-br from-orange-50 to-orange-200 rounded-2xl flex items-center justify-center text-4xl text-[#c96e4b] mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all shadow-lg">
-          <i class="ri-github-line"></i>
-        </div>
-        <h3 class="text-2xl font-bold mb-3">GitHub</h3>
-        <p class="text-gray-600 mb-5">Get in Touch.</p>
-        <p class="text-[#c96e4b] font-bold flex items-center gap-2 text-lg">
-          github.com/Raiyll
-          <i class="ri-arrow-right-up-line group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform"></i>
-        </p>
-      </a>
-    </div>
-
-    <form class="space-y-6" id="contact-form">
-
-  <div class="grid md:grid-cols-2 gap-6">
-    <div>
-      <label class="block text-sm font-bold mb-3 text-gray-700">
-        Your Name *
-      </label>
-      <input 
-        type="text"
-        name="name"
-        placeholder="John Doe"
-        required
-        class="w-full px-5 py-4 rounded-xl input-glass text-base">
-    </div>
-
-    <div>
-      <label class="block text-sm font-bold mb-3 text-gray-700">
-        Email *
-      </label>
-      <input 
-        type="email"
-        name="email"
-        placeholder="john@example.com"
-        required
-        class="w-full px-5 py-4 rounded-xl input-glass text-base">
-    </div>
-  </div>
-
-  <div>
-    <label class="block text-sm font-bold mb-3 text-gray-700">
-      Subject *
-    </label>
-    <input 
-      type="text"
-      name="subject"
-      placeholder="Project Collaboration"
-      required
-      class="w-full px-5 py-4 rounded-xl input-glass text-base">
-  </div>
-
-  <div>
-    <label class="block text-sm font-bold mb-3 text-gray-700">
-      Pesan *
-    </label>
-    <textarea 
-      rows="6"
-      name="message"
-      placeholder="Explain your ideas and requirements here..."
-      required
-      class="w-full px-5 py-4 rounded-xl input-glass resize-none text-base"></textarea>
-  </div>
-
-  <button 
-    type="submit"
-    class="btn-primary btn-magnetic px-10 py-5 rounded-2xl font-bold flex items-center gap-3 shadow-lg w-full justify-center relative z-10 text-lg">
-    <span>Kirim Pesan</span>
-    <i class="ri-send-plane-fill"></i>
-  </button>
-
-</form>
-
-  </section>
-
-</main>
-
-<!-- Enhanced Footer -->
-<footer class="bg-gradient-to-br from-[#3d2b1f] to-[#2a1f16] text-[#fdfaf7] py-20 px-6 relative overflow-hidden">
-  <!-- Animated Footer Background -->
-  <div class="absolute top-0 left-0 w-96 h-96 bg-[#c96e4b] rounded-full blur-[150px] opacity-20 animate-pulse"></div>
-  <div class="absolute bottom-0 right-0 w-80 h-80 bg-[#ff9a7b] rounded-full blur-[140px] opacity-15 animate-pulse" style="animation-delay: 1s;"></div>
-  
-  <div class="max-w-6xl mx-auto relative z-10">
-    <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
+    <div class="lock-center">
       <div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Got Some Ideas? <br><span class="text-[#c96e4b]">Make it Happen.</span></h2>
-        <p class="text-gray-400 mb-10 max-w-sm text-lg leading-relaxed">Ready to help you with your project from design to deployment. Let's make it happen!</p>
-        <div class="flex gap-4">
-          <a href="https://instagram.com/rai.codes" class="social-icon w-14 h-14 rounded-xl bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center text-2xl hover:bg-[#c96e4b] hover:border-[#c96e4b]">
-            <i class="ri-instagram-line"></i>
-          </a>
-          <a href="https://linkedin.com/in/ahmad-rafi-fadhilah-80bb35344" class="social-icon w-14 h-14 rounded-xl bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center text-2xl hover:bg-[#c96e4b] hover:border-[#c96e4b]">
-            <i class="ri-linkedin-box-line"></i>
-          </a>
-          <a href="https://github.com/Raiyll" class="social-icon w-14 h-14 rounded-xl bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center text-2xl hover:bg-[#c96e4b] hover:border-[#c96e4b]">
-            <i class="ri-github-line"></i>
-          </a>
-          <a href="https://twitter.com/naleviacktan" class="social-icon w-14 h-14 rounded-xl bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center text-2xl hover:bg-[#c96e4b] hover:border-[#c96e4b]">
-            <i class="ri-twitter-x-line"></i>
-          </a>
-        </div>
+        <p id="lock-date-display" class="lock-date">Thursday, 29 October</p>
+        <p id="lock-clock-display" class="lock-clock mono">15:00</p>
       </div>
-      
-      <div class="bg-white/5 backdrop-blur-xl p-10 rounded-3xl border border-white/10 shadow-2xl">
-        <div class="flex items-center gap-3 mb-6">
-        <i class="ri-contacts-line text-2xl text-[#c96e4b] mb-6"></i>
-        <p class="text-sm font-bold uppercase tracking-widest text-[#c96e4b] mb-6">Contact Detail</p>
+
+      <div class="lock-account-card">
+        <div id="lock-cat-stage" class="lock-cat-stage">
+          <p id="lock-cat-bubble" class="cat-speech-bubble mono" role="status" aria-live="polite">
+            Meow! Elus aku atau klik Unlock ~
+          </p>
+          <button type="button" id="lock-cat-btn" class="lock-cat-btn"
+            aria-label="Pet Mochi the lock screen cat companion">
+            <svg class="lock-cat-svg" viewBox="0 0 100 62" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <path class="cat-tail" d="M72 46 C88 46, 94 30, 86 22 C82 18, 77 24, 81 29 C84 33, 80 40, 72 41"
+                stroke="var(--accent)" stroke-width="5" stroke-linecap="round" fill="none" />
+              <ellipse cx="50" cy="44" rx="24" ry="14" fill="var(--bg-elevated)" stroke="var(--border-strong)"
+                stroke-width="2" />
+              <g class="cat-ear-l">
+                <polygon points="28,28 22,10 38,20" fill="var(--bg-elevated)" stroke="var(--border-strong)"
+                  stroke-width="2" stroke-linejoin="round" />
+                <polygon points="29,25 25,14 35,20" fill="var(--accent)" />
+              </g>
+              <g class="cat-ear-r">
+                <polygon points="64,28 70,10 54,20" fill="var(--bg-elevated)" stroke="var(--border-strong)"
+                  stroke-width="2" stroke-linejoin="round" />
+                <polygon points="63,25 67,14 57,20" fill="var(--accent)" />
+              </g>
+              <circle cx="46" cy="31" r="17" fill="var(--bg-elevated)" stroke="var(--border-strong)" stroke-width="2" />
+              <circle cx="39" cy="29" r="3.6" fill="var(--bg-input)" />
+              <circle cx="53" cy="29" r="3.6" fill="var(--bg-input)" />
+              <circle id="cat-pupil-l" cx="39" cy="29" r="1.9" fill="var(--accent)" />
+              <circle id="cat-pupil-r" cx="53" cy="29" r="1.9" fill="var(--accent)" />
+              <circle cx="38" cy="27.8" r="0.9" fill="#ffffff" />
+              <circle cx="52" cy="27.8" r="0.9" fill="#ffffff" />
+              <polygon points="46,33 43.8,35.5 48.2,35.5" fill="var(--accent)" />
+              <path d="M43 37 Q46 39.5 46 36.5 Q46 39.5 49 37" stroke="var(--text-primary)" stroke-width="1.5"
+                stroke-linecap="round" fill="none" />
+              <line x1="23" y1="31" x2="31" y2="32" stroke="var(--text-secondary)" stroke-width="1.3"
+                stroke-linecap="round" />
+              <line x1="23" y1="35" x2="31" y2="34.5" stroke="var(--text-secondary)" stroke-width="1.3"
+                stroke-linecap="round" />
+              <line x1="61" y1="32" x2="69" y2="31" stroke="var(--text-secondary)" stroke-width="1.3"
+                stroke-linecap="round" />
+              <line x1="61" y1="34.5" x2="69" y2="35" stroke="var(--text-secondary)" stroke-width="1.3"
+                stroke-linecap="round" />
+              <ellipse cx="36" cy="55" rx="5.5" ry="3.5" fill="var(--bg-window)" stroke="var(--border-strong)"
+                stroke-width="1.8" />
+              <ellipse cx="56" cy="55" rx="5.5" ry="3.5" fill="var(--bg-window)" stroke="var(--border-strong)"
+                stroke-width="1.8" />
+              <path class="cat-heart"
+                d="M46 9 C44 6, 39 6, 39 10 C39 13, 46 17, 46 17 C46 17, 53 13, 53 10 C53 6, 48 6, 46 9 Z"
+                fill="var(--accent)" />
+            </svg>
+          </button>
         </div>
-        <div class="space-y-5">
-          <p class="text-xl font-medium flex items-center gap-4">
-            <i class="ri-mail-line text-2xl text-[#c96e4b]"></i>
-            <span class="hover:text-[#c96e4b] transition-colors cursor-pointer">ahmadrafifadilah50@gmail.com</span>
-          </p>
-          <p class="text-xl text-gray-300 flex items-center gap-4">
-            <i class="ri-phone-line text-2xl text-[#c96e4b]"></i>
-            <span class="hover:text-[#c96e4b] transition-colors cursor-pointer">+62 877-7402-4460</span>
-          </p>
-          <p class="text-gray-400 flex items-center gap-4 text-lg">
-            <i class="ri-map-pin-line text-2xl text-[#c96e4b]"></i>
-            Tangerang, Indonesia 🇮🇩
-          </p>
+
+        <div class="lock-avatar-wrap">
+          <img src="img/gw2.png" alt="Portrait of Ahmad Rafi Fadhilah" width="384" height="384" fetchpriority="high">
+        </div>
+        <div>
+          <h2 class="lock-user-name">Ahmad Rafi Fadhilah</h2>
+          <p class="lock-user-role">Full-Stack Developer</p>
+        </div>
+
+        <form id="mac-login-form" class="lock-login-form" autocomplete="off">
+          <label for="mac-passcode-input" class="field-label" style="text-align: left; margin-bottom: 2px;">
+            Touch ID or Press Enter to Unlock Session
+          </label>
+          <div class="lock-input-row">
+            <input type="password" id="mac-passcode-input" class="mac-input"
+              placeholder="Click Unlock or press Enter (no password required)">
+            <button type="submit" class="btn-primary-mac">
+              <i class="ri-fingerprint-line" aria-hidden="true"></i>
+              <span>Unlock</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="lock-bottom-actions">
+          <button type="button" id="unlock-resume-btn" class="btn-secondary-mac">
+            <i class="ri-file-user-line" aria-hidden="true"></i>
+            <span>Unlock &amp; Read Full Resume</span>
+          </button>
+          <button type="button" id="unlock-projects-btn" class="btn-secondary-mac">
+            <i class="ri-folder-open-line" aria-hidden="true"></i>
+            <span>Unlock to Finder Projects</span>
+          </button>
         </div>
       </div>
     </div>
-    
-    <!-- Footer Bottom -->
-    <div class="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-xl overflow-hidden shadow-lg flex items-center justify-center ">
-            <img src="img/L.jpeg"
-            />
-            </div>
-        <div class="flex flex-col">
+
+    <div class="lock-bottom-actions mono" style="font-size: 0.78rem; color: var(--text-secondary);">
+      <span>Tip: Press Enter or click Unlock to enter Desktop workspace.</span>
+    </div>
+  </aside>
+
+  <!-- MACOS TOP MENU BAR -->
+  <header class="mac-menubar">
+    <div class="menubar-group">
+      <button type="button" id="apple-menu-btn" class="mac-pill-btn" aria-haspopup="dialog" aria-expanded="false">
+        <i class="ri-apple-fill" aria-hidden="true" style="font-size: 1.1rem;"></i>
+        <span style="font-weight: 800;">Kael</span>
+      </button>
+
+      <nav class="menubar-group" aria-label="macOS Stage Manager Workspaces">
+        <button type="button" class="mac-pill-btn is-active" data-workspace="all" aria-pressed="true">
+          <span>All Windows</span>
+        </button>
+        <button type="button" class="mac-pill-btn" data-workspace="career" aria-pressed="false">
+          <span>Career &amp; Resume</span>
+        </button>
+        <button type="button" class="mac-pill-btn" data-workspace="finder" aria-pressed="false">
+          <span>Finder (6 Projects)</span>
+        </button>
+        <button type="button" class="mac-pill-btn" data-workspace="tools" aria-pressed="false">
+          <span>Stack, Shell &amp; Mail</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="menubar-group">
+      <button type="button" id="wm-mode-btn" class="mac-pill-btn mono" aria-pressed="false"
+        title="Toggle between Stage Manager Tiled Grid and Free Window Drag">
+        <i class="ri-drag-move-2-line" aria-hidden="true"></i>
+        <span id="wm-mode-label">Stage: Tiled</span>
+      </button>
+
+      <button type="button" id="restore-all-btn" class="mac-pill-btn" title="Show and tile all macOS windows">
+        <i class="ri-layout-masonry-line" aria-hidden="true"></i>
+        <span>Show All</span>
+      </button>
+
+      <button type="button" id="lock-screen-btn" class="mac-pill-btn" title="Return to MacBook Login Lock Screen">
+        <i class="ri-lock-line" aria-hidden="true"></i>
+        <span>Lock Screen</span>
+      </button>
+
+      <button type="button" id="theme-toggle-btn" class="mac-pill-btn" aria-label="Switch macOS appearance">
+        <i class="ri-contrast-2-line" aria-hidden="true"></i>
+        <span id="theme-label" class="mono">Dark</span>
+      </button>
+
+      <div class="mac-clock-pill mono" aria-live="polite">
+        <i class="ri-time-line" aria-hidden="true"></i>
+        <span id="menubar-clock">Tangerang WIB</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MACOS DESKTOP WORKSPACE -->
+  <main id="main-workspace" class="mac-desktop">
+
+    <!-- WINDOW 1: About This Mac & Developer Overview -->
+    <section id="win-profile" class="mac-window win-col-12 win-span-tablet-2 is-focused" data-window-id="win-profile"
+      data-workspace-group="career" aria-labelledby="title-profile">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" class="tl-btn" data-win-action="close" data-target="win-profile"
+            aria-label="Close About This Mac window">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="minimize" data-target="win-profile"
+            aria-label="Minimize About This Mac window">
+            <span class="tl-dot minimize" aria-hidden="true">-</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="maximize" data-target="win-profile"
+            aria-label="Zoom About This Mac window">
+            <span class="tl-dot zoom" aria-hidden="true">+</span>
+          </button>
         </div>
-        <span class="font-bold tracking-tight text-xl">Ahmad Rafi Fadhilah</span>
+        <div class="window-title-center">
+          <i class="ri-macbook-line" aria-hidden="true"></i>
+          <span id="title-profile" class="window-title-text">About Me</span>
+        </div>
+        <span class="window-badge mono">macOS Sequoia 15.2</span>
       </div>
-      <p class="text-sm text-gray-500">© 2026 Ahmad Rafi Fadhilah All Rights Reserved. </p>
-      <div class="flex gap-8 text-sm">
-        <a href="#" class="hover:text-[#c96e4b] transition-colors font-medium">Privacy</a>
-        <a href="#" class="hover:text-[#c96e4b] transition-colors font-medium">Terms</a>
-        <a href="#" class="hover:text-[#c96e4b] transition-colors font-medium">Sitemap</a>
+
+      <div class="window-body">
+        <div class="about-mac-grid">
+          <div class="mac-hardware-card">
+            <div class="mac-portrait-ring">
+              <img src="img/gw2.png" alt="Ahmad Rafi Fadhilah portrait" width="240" height="240">
+            </div>
+            <p class="mono" style="font-size: 0.76rem; font-weight: 700; color: var(--accent);">
+              MacBook Pro · Tangerang
+            </p>
+            <p style="font-size: 0.78rem; color: var(--text-secondary);">
+              Full-Stack Developer
+            </p>
+          </div>
+
+          <div>
+            <p class="mono" style="font-size: 0.8rem; color: var(--accent); font-weight: 700; margin-bottom: 4px;">
+              PT Tri Nindya Utama · SMKN 4 Tangerang · Samsung Innovation Campus
+            </p>
+            <h1 class="hero-h1">
+              Ahmad Rafi Fadhilah: <span style="color: var(--accent);">Full-Stack Developer</span>
+            </h1>
+            <p style="color: var(--text-secondary); font-size: clamp(0.95rem, 1.1vw, 1.04rem); max-width: 72ch;">
+              A Full-Stack Developer based in Kab. Tangerang, Banten with a strong focus on clean architecture and
+              maintainable code. Specialized in <strong>Laravel &amp; React</strong>, developing scalable and
+              production-ready web applications with modern UI and solid backend systems. Fluent in
+              <strong>English</strong> with conversational proficiency in <strong>Japanese</strong>, bringing strong
+              cross-cultural communication and public speaking skills to technical environments.
+            </p>
+
+            <div class="specs-list" aria-label="System and career summary">
+              <div>
+                <span class="spec-key">Current Position</span>
+                <span class="spec-val">Full Stack Developer @ PT Tri Nindya Utama</span>
+              </div>
+              <div>
+                <span class="spec-key">Flagship System</span>
+                <span class="spec-val">AMS Inspektorat BKKBN (Laravel &amp; MySQL)</span>
+              </div>
+              <div>
+                <span class="spec-key">Education</span>
+                <span class="spec-val">SMKN 4 Tangerang (Software Engineering, 2024 - 2027)</span>
+              </div>
+              <div>
+                <span class="spec-key">Competition Honors</span>
+                <span class="spec-val">1st Place UNIPI · 2nd Place LKS ITSS · 2nd Storytelling</span>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="#win-experience" class="btn-primary-mac" data-focus-window="win-experience">
+                <i class="ri-briefcase-4-line" aria-hidden="true"></i>
+                <span>Open Work Experience &amp; Resume</span>
+              </a>
+              <a href="#win-projects" class="btn-secondary-mac" data-focus-window="win-projects">
+                <i class="ri-folder-open-line" aria-hidden="true"></i>
+                <span>Browse Finder (6 Projects)</span>
+              </a>
+              <button type="button" id="print-resume-btn" class="btn-secondary-mac">
+                <i class="ri-printer-line" aria-hidden="true"></i>
+                <span>Print / Save CV as PDF</span>
+              </button>
+              <a href="https://www.kael.web.id/" target="_blank" rel="noopener noreferrer" class="btn-secondary-mac">
+                <i class="ri-global-line" aria-hidden="true"></i>
+                <span>kael.web.id</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- WINDOW 2: Experience, Education & Certifications (Full Resume Content) -->
+    <section id="win-experience" class="mac-window win-col-7 win-span-tablet-2" data-window-id="win-experience"
+      data-workspace-group="career" aria-labelledby="title-experience">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" class="tl-btn" data-win-action="close" data-target="win-experience"
+            aria-label="Close Experience window">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="minimize" data-target="win-experience"
+            aria-label="Minimize Experience window">
+            <span class="tl-dot minimize" aria-hidden="true">-</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="maximize" data-target="win-experience"
+            aria-label="Zoom Experience window">
+            <span class="tl-dot zoom" aria-hidden="true">+</span>
+          </button>
+        </div>
+        <div class="window-title-center">
+          <i class="ri-briefcase-line" aria-hidden="true"></i>
+          <span id="title-experience" class="window-title-text">Experience &amp; Credentials.app</span>
+        </div>
+        <span class="window-badge mono">Resume.db</span>
+      </div>
+
+      <div class="window-body">
+        <div style="margin-bottom: 16px;">
+          <h2 style="font-size: clamp(1.25rem, 1.9vw, 1.55rem); font-weight: 800;">Work Experience, Education &amp;
+            Certifications</h2>
+          <p style="color: var(--text-secondary); font-size: 0.88rem;">
+            Complete career history, academic background, and Samsung Electronics Indonesia technical certifications.
+          </p>
+        </div>
+
+        <div class="stack-stack-col">
+          <!-- Work Experience: PT Tri Nindya Utama -->
+          <article class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 style="font-size: 1.15rem; font-weight: 800;">PT Tri Nindya Utama</h3>
+                <p style="font-size: 0.9rem; font-weight: 700; color: var(--accent);">Full Stack Developer</p>
+              </div>
+              <span class="role-badge mono">Jun 2026 - Present</span>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-primary);">
+              Developed and maintained the <strong>Audit Management System (AMS) Inspektorat BKKBN</strong> application
+              end-to-end using <strong>Laravel, PHP, and MySQL</strong> to support digital oversight, auditing, and
+              governance processes.
+            </p>
+            <ul class="resume-bullets">
+              <li>
+                <strong>Database Architecture &amp; JSON Seeders:</strong> Designed and implemented complex relational
+                database architectures, including migrations, custom seeders for bulk data migration from JSON files,
+                and soft deletes to maintain oversight data integrity.
+              </li>
+              <li>
+                <strong>Core Governance Modules &amp; Eloquent ORM:</strong> Built complex core modules such as Auditee
+                Management, Auditee PIC / Officials (Pejabat Auditee), and oversight parameters (audit finding types,
+                categories) complete with advanced Eloquent relationships (<code>belongsTo</code>, <code>hasMany</code>,
+                Eager Loading).
+              </li>
+              <li>
+                <strong>Dynamic Search &amp; Validation:</strong> Developed dynamic backend and frontend features,
+                including multi-criteria search systems, advanced data filters, strict form validation, and structured
+                CRUD process management.
+              </li>
+              <li>
+                <strong>Performance &amp; Query Optimization:</strong> Performed debugging, query optimization, and
+                system performance enhancements to ensure the AMS Inspektorat BKKBN application is reliable in managing
+                audit data and work units accurately.
+              </li>
+            </ul>
+          </article>
+
+          <!-- Education: SMKN 4 Tangerang -->
+          <article class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 style="font-size: 1.1rem; font-weight: 800;">SMKN 4 Tangerang</h3>
+                <p style="font-size: 0.88rem; color: var(--text-secondary);">Software Engineering (Rekayasa Perangkat
+                  Lunak)</p>
+              </div>
+              <span class="role-badge mono">Jul 2024 - Jul 2027</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Focused on full-stack web engineering, desktop software architecture (C#), mobile POS development (Java /
+              Android Studio), and competitive software solutions (LKS ITSS).
+            </p>
+          </article>
+
+          <!-- Certificate 1: Samsung Innovation Campus Stage 2 -->
+          <article class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 style="font-size: 1.05rem; font-weight: 800;">Samsung Innovation Campus Batch 7 (Stage 2: IoT)</h3>
+                <p style="font-size: 0.85rem; color: var(--accent); font-weight: 700;">Samsung Electronics Indonesia ·
+                  Certificate of Completion</p>
+              </div>
+              <span class="role-badge mono">Sep 2025 - Present</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Completed Stage 2 (IoT: Device and Hardware Discovery), focusing on Internet of Things development,
+                hardware integration, and sensor connectivity.</li>
+              <li>Learned core concepts including <strong>ESP32 setup, input sensors, output devices, serial
+                  communication, MQTT &amp; HiveMQ protocols, and Python dashboards</strong>.</li>
+              <li>Designed and built a functional IoT device capable of monitoring real-time temperature and humidity
+                levels, equipped with an automated alarm system that triggers when temperatures exceed safe limits.</li>
+            </ul>
+          </article>
+
+          <!-- Certificate 2: Samsung Innovation Campus Stage 1 -->
+          <article class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3 style="font-size: 1.05rem; font-weight: 800;">Samsung Innovation Campus Batch 7 (Stage 1: Code
+                  Kickstart Python)</h3>
+                <p style="font-size: 0.85rem; color: var(--accent); font-weight: 700;">Samsung Electronics Indonesia ·
+                  Final Score: 99.7</p>
+              </div>
+              <span class="role-badge mono">Aug 2025 - Present</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Completed Stage 1 focusing on fundamental Python programming and software logic, covering syntax,
+                control flow, functions, lists, dictionaries, file handling, and a hands-on Python project.</li>
+              <li>Achieved an <strong>outstanding final score of 99.7</strong>, demonstrating strong proficiency in
+                coding tests and active participation.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WINDOW 3: Preview.app : Competition Awards & Achievements -->
+    <section id="win-awards" class="mac-window win-col-5 win-span-tablet-2" data-window-id="win-awards"
+      data-workspace-group="career" aria-labelledby="title-awards">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" class="tl-btn" data-win-action="close" data-target="win-awards"
+            aria-label="Close Preview Awards window">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="minimize" data-target="win-awards"
+            aria-label="Minimize Preview Awards window">
+            <span class="tl-dot minimize" aria-hidden="true">-</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="maximize" data-target="win-awards"
+            aria-label="Zoom Preview Awards window">
+            <span class="tl-dot zoom" aria-hidden="true">+</span>
+          </button>
+        </div>
+        <div class="window-title-center">
+          <i class="ri-medal-line" aria-hidden="true"></i>
+          <span id="title-awards" class="window-title-text">Preview.app : Honors_and_Awards.pdf</span>
+        </div>
+        <span class="window-badge mono">3 Verified</span>
+      </div>
+
+      <div class="window-body">
+        <div style="margin-bottom: 14px;">
+          <h2 style="font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 800;">Honors &amp; Competition Awards</h2>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">
+            Verified achievements in university web innovation, city-level software engineering, and public speaking.
+          </p>
+        </div>
+
+        <div class="awards-stack">
+          <article class="award-card">
+            <div class="timeline-header">
+              <span class="role-badge mono">1ST PLACE WINNER · DEC 2026</span>
+              <span class="mono" style="font-size: 0.76rem; color: var(--text-secondary);">UNIPI</span>
+            </div>
+            <h3 style="font-size: 1.08rem; font-weight: 800;">MSME (UMKM) Digital Web Design Competition</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Secured 1st Place in the UMKM Digital Competition hosted by Universitas Insan Pembangunan Indonesia
+              (UNIPI) with <strong>Jamu!</strong>, demonstrating excellence in digital innovation and solution
+              development for local businesses.
+            </p>
+          </article>
+
+          <article class="award-card">
+            <div class="timeline-header">
+              <span class="role-badge mono">2ND PLACE WINNER · JAN 2026</span>
+              <span class="mono" style="font-size: 0.76rem; color: var(--text-secondary);">LKS City Level</span>
+            </div>
+            <h3 style="font-size: 1.08rem; font-weight: 800;">LKS IT Software Solutions for Business (ITSS)</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Secured 2nd Place in the city-level Lomba Kompetensi Siswa competitive programming and software
+              engineering competition under strict time constraints, delivering two full applications:
+            </p>
+            <ul class="resume-bullets">
+              <li><strong>Esemkabooks (C# Desktop Application):</strong> Digital book management system with data
+                extraction, local database integration, book cataloging, search, and inventory tracking.</li>
+              <li><strong>Esemka Store (Android Mobile POS):</strong> Android Point of Sale application built with
+                Android Studio &amp; Java featuring transaction processing, item management, and real-time retail data
+                handling.</li>
+            </ul>
+          </article>
+
+          <article class="award-card">
+            <div class="timeline-header">
+              <span class="role-badge mono">2ND PLACE WINNER</span>
+              <span class="mono" style="font-size: 0.76rem; color: var(--text-secondary);">Public Speaking</span>
+            </div>
+            <h3 style="font-size: 1.08rem; font-weight: 800;">Storytelling Competition</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Awarded 2nd Place in the Storytelling Competition, highlighting fluent English communication and
+              structured presentation skills.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WINDOW 4: Finder : All 6 Projects from Resume & Portfolio -->
+    <section id="win-projects" class="mac-window win-col-12 win-span-tablet-2" data-window-id="win-projects"
+      data-workspace-group="finder" aria-labelledby="title-projects">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" class="tl-btn" data-win-action="close" data-target="win-projects"
+            aria-label="Close Finder Projects window">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="minimize" data-target="win-projects"
+            aria-label="Minimize Finder Projects window">
+            <span class="tl-dot minimize" aria-hidden="true">-</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="maximize" data-target="win-projects"
+            aria-label="Zoom Finder Projects window">
+            <span class="tl-dot zoom" aria-hidden="true">+</span>
+          </button>
+        </div>
+        <div class="window-title-center">
+          <i class="ri-folder-5-line" aria-hidden="true"></i>
+          <span id="title-projects" class="window-title-text">Finder : /Users/ahmadrafi/Projects (6 Items)</span>
+        </div>
+        <span class="window-badge mono">Finder.app</span>
+      </div>
+
+      <div class="window-body">
+        <div style="margin-bottom: 14px;">
+          <h2 style="font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 800;">Built Systems &amp; Project Archive</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Enterprise government audit systems, award-winning web platforms, C# desktop software, Android Java POS, and
+            ESP32 IoT hardware.
+          </p>
+        </div>
+
+        <div class="finder-toolbar">
+          <div class="finder-search-wrap">
+            <label for="project-search" class="sr-only">Search projects in Finder</label>
+            <input type="search" id="project-search" class="mac-input"
+              placeholder="Search Finder (e.g. BKKBN, Laravel, Jamu, LootHub, Esemkabooks, Android, ESP32)...">
+          </div>
+
+          <div class="finder-filters" role="group" aria-label="Filter projects by platform">
+            <button type="button" class="mac-pill-btn is-active" data-proj-filter="all" aria-pressed="true">All
+              (6)</button>
+            <button type="button" class="mac-pill-btn" data-proj-filter="enterprise" aria-pressed="false">Enterprise
+              &amp; Gov (1)</button>
+            <button type="button" class="mac-pill-btn" data-proj-filter="web" aria-pressed="false">Web &amp; POS
+              (2)</button>
+            <button type="button" class="mac-pill-btn" data-proj-filter="desktop-mobile" aria-pressed="false">Desktop
+              &amp; Android (2)</button>
+            <button type="button" class="mac-pill-btn" data-proj-filter="iot" aria-pressed="false">IoT Hardware
+              (1)</button>
+            <button type="button" class="mac-pill-btn mono" id="finder-sync-btn" title="Refresh Finder directory index">
+              <i class="ri-refresh-line" aria-hidden="true"></i>
+              <span>Reload Finder</span>
+            </button>
+            <button type="button" class="mac-pill-btn mono" id="finder-verify-btn"
+              title="Check public deployment endpoints">
+              <i class="ri-radar-line" aria-hidden="true"></i>
+              <span>Verify Links</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic State Container for Empty / Loading / Error states (R-27) -->
+        <div id="project-state-banner" style="margin-bottom: 16px;" hidden></div>
+
+        <div id="projects-container" class="finder-list">
+          <!-- Project 1: Audit Management System (AMS) Inspektorat BKKBN -->
+          <article class="finder-item-row" data-pkg-category="enterprise"
+            data-pkg-keywords="audit management system ams inspektorat bkkbn pt tri nindya utama laravel php mysql eloquent json seeder crud">
+            <div>
+              <div class="finder-tags mono">
+                <span class="tag-chip">PT Tri Nindya Utama (Jun 2026 - Present)</span>
+                <span class="tag-chip">Laravel · PHP · MySQL · Eloquent ORM</span>
+              </div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;">Audit Management System (AMS)
+                Inspektorat BKKBN</h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 12px;">
+                End-to-end digital oversight, auditing, and governance web application built for Inspektorat BKKBN.
+                Features complex relational database migrations, custom bulk JSON seeders, soft deletes, Auditee &amp;
+                Pejabat/PIC Auditee management, audit finding parameter modules, Eager Loading optimization, and
+                multi-criteria search filters.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="#win-experience" class="btn-primary-mac" data-focus-window="win-experience">
+                  <i class="ri-file-list-3-line" aria-hidden="true"></i>
+                  <span>Read Full Architecture Notes</span>
+                </a>
+                <button type="button" class="btn-secondary-mac" disabled aria-disabled="true"
+                  title="Internal government oversight system">
+                  <i class="ri-shield-keyhole-line" aria-hidden="true"></i>
+                  <span>Internal Government System (BKKBN)</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Jamu! Digital UMKM Platform -->
+          <article class="finder-item-row has-preview" data-pkg-category="web"
+            data-pkg-keywords="jamu umkm msme digital competition unipi 1st place web react vercel">
+            <div class="finder-preview-box">
+              <img src="img/jamu2.png" alt="Screenshot of Jamu! Digital UMKM Platform" width="800" height="450"
+                loading="lazy">
+            </div>
+            <div>
+              <div class="finder-tags mono">
+                <span class="tag-chip">1st Place Winner · UNIPI (Dec 2026)</span>
+                <span class="tag-chip">Web Application</span>
+              </div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;">Jamu! Digital UMKM Platform</h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 12px;">
+                Secured 1st Place in the MSME (UMKM) Web Design Competition organized by Universitas Insan Pembangunan
+                Indonesia (UNIPI), delivering an end-to-end digital storefront and innovation platform for local UMKM
+                businesses.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="https://djamu.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-primary-mac">
+                  <i class="ri-external-link-line" aria-hidden="true"></i>
+                  <span>Open Live Deployment</span>
+                </a>
+                <a href="https://github.com/Raiyll/djamu-fe" target="_blank" rel="noopener noreferrer"
+                  class="btn-secondary-mac">
+                  <i class="ri-github-line" aria-hidden="true"></i>
+                  <span>Inspect GitHub Source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: LootHub Gaming POS -->
+          <article class="finder-item-row has-preview" data-pkg-category="web"
+            data-pkg-keywords="loothub point of sale pos gaming store keyboard currency">
+            <div class="finder-preview-box">
+              <img src="img/Loot.png" alt="Screenshot of LootHub Gaming Point of Sale platform" width="800" height="450"
+                loading="lazy">
+            </div>
+            <div>
+              <div class="finder-tags mono">
+                <span class="tag-chip">Point of Sale Web Platform (2026)</span>
+                <span class="tag-chip">Full-Stack POS</span>
+              </div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;">LootHub Gaming POS</h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 12px;">
+                An all-in-one gaming Point of Sale platform that handles both physical gaming hardware and virtual
+                in-game currency through a unified dashboard for fast retail inventory and checkout operations.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="https://github.com/Raiyll/LootHub" target="_blank" rel="noopener noreferrer"
+                  class="btn-primary-mac">
+                  <i class="ri-github-line" aria-hidden="true"></i>
+                  <span>Inspect GitHub Source</span>
+                </a>
+                <button type="button" class="btn-secondary-mac" disabled aria-disabled="true"
+                  title="Public cloud demo deployment is being provisioned">
+                  <i class="ri-time-line" aria-hidden="true"></i>
+                  <span>Live Demo (Coming soon)</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Esemkabooks (C# Desktop Application) -->
+          <article class="finder-item-row" data-pkg-category="desktop-mobile"
+            data-pkg-keywords="esemkabooks desktop application c# csharp lks itss 2nd place library book cataloging inventory">
+            <div>
+              <div class="finder-tags mono">
+                <span class="tag-chip">2nd Place LKS City Level ITSS (Jan 2026)</span>
+                <span class="tag-chip">C# · Desktop Application · Local DB</span>
+              </div>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 6px;">Esemkabooks (Desktop Digital Library
+                System)</h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 12px;">
+                Desktop-based digital book management application built using <strong>C#</strong> for the LKS IT
+                Software Solutions for Business competition. Implemented data extraction, local database integration,
+                and intuitive desktop interfaces for book cataloging, search, and inventory tracking.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="https://github.com/Raiyll" target="_blank" rel="noopener noreferrer" class="btn-secondary-mac">
+                  <i class="ri-github-line" aria-hidden="true"></i>
+                  <span>View GitHub Profile (@Raiyll)</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Esemka Store (Android Mobile POS) -->
+          <article class="finder-item-row" data-pkg-category="desktop-mobile"
+            data-pkg-keywords="esemka store android mobile pos java android studio lks itss retail transaction">
+            <div>
+              <div class="finder-tags mono">
+                <span class="tag-chip">2nd Place LKS City Level ITSS (Jan 2026)</span>
+                <span class="tag-chip">Java · Android Studio · Mobile POS</span>
+              </div>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 6px;">Esemka Store (Android Mobile POS)
+              </h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 12px;">
+                Android-based Point of Sale (POS) mobile application built using <strong>Android Studio and
+                  Java</strong>. Implemented core retail POS functionalities including transaction processing, item
+                management, and real-time data handling for mobile store operations.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <a href="https://github.com/Raiyll" target="_blank" rel="noopener noreferrer" class="btn-secondary-mac">
+                  <i class="ri-github-line" aria-hidden="true"></i>
+                  <span>View GitHub Profile (@Raiyll)</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6: ESP32 Temperature & Humidity IoT Alarm System -->
+          <article class="finder-item-row" data-pkg-category="iot"
+            data-pkg-keywords="iot esp32 mqtt hivemq python dashboard temperature humidity alarm samsung innovation campus">
+            <div>
+              <div class="finder-tags mono">
+                <span class="tag-chip">Samsung Innovation Campus Batch 7 Stage 2 (Sep 2025)</span>
+                <span class="tag-chip">ESP32 · MQTT &amp; HiveMQ · Python Dashboard</span>
+              </div>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 6px;">Real-Time IoT Temperature &amp;
+                Humidity Alarm System</h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem;">
+                Functional Internet of Things (IoT) hardware device built with <strong>ESP32</strong>, input
+                environmental sensors, output alarm actuators, <strong>MQTT &amp; HiveMQ</strong> telemetry protocols,
+                and a <strong>Python dashboard</strong> that triggers an automated alarm when temperatures exceed safe
+                limits.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WINDOW 5: Activity Monitor : Technical Skills & Stack -->
+    <section id="win-skills" class="mac-window win-col-7 win-span-tablet-2" data-window-id="win-skills"
+      data-workspace-group="tools" aria-labelledby="title-skills">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" class="tl-btn" data-win-action="close" data-target="win-skills"
+            aria-label="Close Activity Monitor window">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="minimize" data-target="win-skills"
+            aria-label="Minimize Activity Monitor window">
+            <span class="tl-dot minimize" aria-hidden="true">-</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="maximize" data-target="win-skills"
+            aria-label="Zoom Activity Monitor window">
+            <span class="tl-dot zoom" aria-hidden="true">+</span>
+          </button>
+        </div>
+        <div class="window-title-center">
+          <i class="ri-cpu-line" aria-hidden="true"></i>
+          <span id="title-skills" class="window-title-text">Activity Monitor : Technical Stack &amp; Capabilities</span>
+        </div>
+        <span class="window-badge mono">Processes</span>
+      </div>
+
+      <div class="window-body">
+        <div style="margin-bottom: 14px;">
+          <h2 style="font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 800;">Active Skills &amp; Technology Modules
+          </h2>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">
+            Filter programming languages, frameworks, database management tools, and IoT/mobile technologies from the
+            resume.
+          </p>
+        </div>
+
+        <div class="finder-toolbar" style="margin-bottom: 14px;">
+          <div class="finder-search-wrap">
+            <label for="skill-search" class="sr-only">Filter technical skills</label>
+            <input type="search" id="skill-search" class="mac-input"
+              placeholder="Filter skills (e.g. Laravel, React, Navicat, Python, C#, ESP32)...">
+          </div>
+          <div class="finder-filters" role="group" aria-label="Filter skills by category">
+            <button type="button" class="mac-pill-btn is-active" data-skill-cat="all" aria-pressed="true">All</button>
+            <button type="button" class="mac-pill-btn" data-skill-cat="web" aria-pressed="false">Web &amp;
+              Frameworks</button>
+            <button type="button" class="mac-pill-btn" data-skill-cat="lang" aria-pressed="false">Languages</button>
+            <button type="button" class="mac-pill-btn" data-skill-cat="db-iot" aria-pressed="false">DB, IoT &amp;
+              Tools</button>
+          </div>
+        </div>
+
+        <div id="skill-empty-state" class="mac-state-box" style="margin-bottom: 14px;" hidden>
+          <p style="font-weight: 700;">No technical modules match your filter</p>
+          <p style="font-size: 0.86rem; color: var(--text-secondary);">Try clearing the search query to display all
+            skills from Ahmad Rafi's resume.</p>
+          <button type="button" id="reset-skill-filter-btn" class="btn-secondary-mac">Reset Skill Filter</button>
+        </div>
+
+        <div class="activity-table-wrap">
+          <table class="activity-table">
+            <thead>
+              <tr>
+                <th scope="col">PID</th>
+                <th scope="col">Technology / Skill</th>
+                <th scope="col">Category</th>
+                <th scope="col">Production Experience</th>
+              </tr>
+            </thead>
+            <tbody id="skills-table-body">
+              <tr data-mod-cat="web" data-mod-name="laravel php eloquent orm backend">
+                <td class="mono">101</td>
+                <td><strong>Laravel &amp; Eloquent ORM</strong></td>
+                <td class="mono">Web Framework</td>
+                <td>AMS Inspektorat BKKBN, custom JSON seeders, soft deletes, CRUD</td>
+              </tr>
+              <tr data-mod-cat="web" data-mod-name="react.js react next.js nextjs frontend">
+                <td class="mono">102</td>
+                <td><strong>React.js &amp; Next.js</strong></td>
+                <td class="mono">Web Framework</td>
+                <td>Interactive SPA interfaces, modern UI architecture</td>
+              </tr>
+              <tr data-mod-cat="web" data-mod-name="tailwind css bootstrap html5 css3 web development">
+                <td class="mono">103</td>
+                <td><strong>Tailwind CSS, Bootstrap, HTML5 &amp; CSS3</strong></td>
+                <td class="mono">Web UI</td>
+                <td>Responsive design systems and cross-device layouts</td>
+              </tr>
+              <tr data-mod-cat="web" data-mod-name="node.js nodejs">
+                <td class="mono">104</td>
+                <td><strong>Node.js</strong></td>
+                <td class="mono">Runtime</td>
+                <td>Full-stack JavaScript tooling and backend services</td>
+              </tr>
+              <tr data-mod-cat="lang" data-mod-name="php">
+                <td class="mono">201</td>
+                <td><strong>PHP</strong></td>
+                <td class="mono">Language</td>
+                <td>Enterprise backend logic and relational data processing</td>
+              </tr>
+              <tr data-mod-cat="lang" data-mod-name="typescript ts javascript">
+                <td class="mono">202</td>
+                <td><strong>TypeScript</strong></td>
+                <td class="mono">Language</td>
+                <td>Type-safe frontend state and API integration</td>
+              </tr>
+              <tr data-mod-cat="lang" data-mod-name="python samsung score 99.7">
+                <td class="mono">203</td>
+                <td><strong>Python (SIC Score: 99.7)</strong></td>
+                <td class="mono">Language &amp; IoT</td>
+                <td>Data structures, file handling, and IoT telemetry dashboards</td>
+              </tr>
+              <tr data-mod-cat="lang" data-mod-name="java android studio kotlin">
+                <td class="mono">204</td>
+                <td><strong>Java, Kotlin &amp; Android Studio</strong></td>
+                <td class="mono">Mobile &amp; OOP</td>
+                <td>Esemka Store Android Mobile POS &amp; object-oriented apps</td>
+              </tr>
+              <tr data-mod-cat="lang" data-mod-name="c# csharp .net desktop">
+                <td class="mono">205</td>
+                <td><strong>C# (.NET Desktop)</strong></td>
+                <td class="mono">Desktop</td>
+                <td>Esemkabooks desktop library &amp; inventory management system</td>
+              </tr>
+              <tr data-mod-cat="db-iot" data-mod-name="mysql mariadb navicat database sql">
+                <td class="mono">301</td>
+                <td><strong>MySQL, MariaDB &amp; Navicat</strong></td>
+                <td class="mono">Database</td>
+                <td>Complex relational schemas, migrations, and query optimization</td>
+              </tr>
+              <tr data-mod-cat="db-iot" data-mod-name="esp32 iot mqtt hivemq sensors hardware">
+                <td class="mono">302</td>
+                <td><strong>ESP32, MQTT &amp; HiveMQ</strong></td>
+                <td class="mono">IoT Hardware</td>
+                <td>Sensor integration, serial communication, real-time alarm device</td>
+              </tr>
+              <tr data-mod-cat="db-iot" data-mod-name="git version control figma ui ux unity blender">
+                <td class="mono">303</td>
+                <td><strong>Git, Figma UI/UX, Unity &amp; Blender</strong></td>
+                <td class="mono">Tools &amp; 3D</td>
+                <td>Version control, interface prototyping, and 3D modeling</td>
+              </tr>
+              <tr data-mod-cat="lang" data-mod-name="english japanese indonesian public speaking storytelling">
+                <td class="mono">401</td>
+                <td><strong>Indonesian, English (Fluent) &amp; Japanese (Conversational)</strong></td>
+                <td class="mono">Communication</td>
+                <td>Cross-cultural technical communication &amp; public speaking</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- WINDOW 6: Terminal.app (macOS zsh) -->
+    <section id="win-terminal" class="mac-window win-col-5 win-span-tablet-2" data-window-id="win-terminal"
+      data-workspace-group="tools" aria-labelledby="title-terminal">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" class="tl-btn" data-win-action="close" data-target="win-terminal"
+            aria-label="Close Terminal window">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="minimize" data-target="win-terminal"
+            aria-label="Minimize Terminal window">
+            <span class="tl-dot minimize" aria-hidden="true">-</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="maximize" data-target="win-terminal"
+            aria-label="Zoom Terminal window">
+            <span class="tl-dot zoom" aria-hidden="true">+</span>
+          </button>
+        </div>
+        <div class="window-title-center">
+          <i class="ri-terminal-box-line" aria-hidden="true"></i>
+          <span id="title-terminal" class="window-title-text">Terminal.app : ahmadrafi@MacBook-Pro (zsh)</span>
+        </div>
+        <span class="window-badge mono">zsh 5.9</span>
+      </div>
+
+      <div class="window-body">
+        <h2 class="sr-only">Interactive macOS zsh Terminal</h2>
+        <div class="zsh-box">
+          <div class="zsh-presets" role="group" aria-label="Quick zsh terminal commands">
+            <button type="button" class="mac-pill-btn mono" data-run-cmd="about">about</button>
+            <button type="button" class="mac-pill-btn mono" data-run-cmd="experience">experience</button>
+            <button type="button" class="mac-pill-btn mono" data-run-cmd="projects">projects</button>
+            <button type="button" class="mac-pill-btn mono" data-run-cmd="certs">certs</button>
+            <button type="button" class="mac-pill-btn mono" data-run-cmd="awards">awards</button>
+            <button type="button" class="mac-pill-btn mono" data-run-cmd="lock">lock</button>
+            <button type="button" class="mac-pill-btn mono" data-run-cmd="clear">clear</button>
+          </div>
+
+          <div id="terminal-output" class="zsh-output mono" role="log" aria-live="polite"
+            aria-label="Terminal output log">
+            <div>
+              <span class="zsh-prompt">ahmadrafi@MacBook-Pro ~ %</span> about
+            </div>
+            <div style="color: var(--text-secondary);">
+              Ahmad Rafi Fadhilah | Full-Stack Developer @ PT Tri Nindya Utama<br>
+              Education: SMKN 4 Tangerang (Software Engineering, Jul 2024 - Jul 2027)<br>
+              Certifications: Samsung Innovation Campus Batch 7 Stage 1 (99.7) &amp; Stage 2 (IoT)<br>
+              Type 'help' or click a command button above.
+            </div>
+          </div>
+
+          <form id="terminal-form" class="zsh-form" autocomplete="off">
+            <label for="terminal-input" class="mono"
+              style="font-size: 0.78rem; font-weight: 700; color: var(--accent);">
+              %
+            </label>
+            <div class="zsh-input-wrap">
+              <input type="text" id="terminal-input" name="command" class="zsh-input mono"
+                placeholder="Type command (help, experience, projects, certs, awards, lock, clear)">
+            </div>
+            <button type="submit" class="btn-primary-mac mono">Run</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- WINDOW 7: Mail.app & Portfolio Links -->
+    <section id="win-mail" class="mac-window win-col-12 win-span-tablet-2" data-window-id="win-mail"
+      data-workspace-group="tools" aria-labelledby="title-mail">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" class="tl-btn" data-win-action="close" data-target="win-mail"
+            aria-label="Close Mail window">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="minimize" data-target="win-mail"
+            aria-label="Minimize Mail window">
+            <span class="tl-dot minimize" aria-hidden="true">-</span>
+          </button>
+          <button type="button" class="tl-btn" data-win-action="maximize" data-target="win-mail"
+            aria-label="Zoom Mail window">
+            <span class="tl-dot zoom" aria-hidden="true">+</span>
+          </button>
+        </div>
+        <div class="window-title-center">
+          <i class="ri-mail-send-line" aria-hidden="true"></i>
+          <span id="title-mail" class="window-title-text">Mail.app : Contact &amp; Portfolio Links</span>
+        </div>
+        <span class="window-badge mono">SMTP Ready</span>
+      </div>
+
+      <div class="window-body">
+        <div style="margin-bottom: 16px;">
+          <h2 style="font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 800;">Contact &amp; Verified Portfolio
+            Channels</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Available for full-stack development roles and freelance web projects. Reach out directly via email,
+            WhatsApp, or the Mail.app composer.
+          </p>
+        </div>
+
+        <div class="mail-grid">
+          <div class="contact-endpoints" aria-label="Direct contact and social links">
+            <div class="endpoint-row">
+              <div style="min-width: 0;">
+                <span class="spec-key mono">Email Address</span>
+                <a href="mailto:ahmadrafifadilah50@gmail.com"
+                  style="font-weight: 700; color: var(--accent); text-decoration: none; word-break: break-all;">
+                  ahmadrafifadilah50@gmail.com
+                </a>
+              </div>
+              <button type="button" id="copy-email-btn" class="mac-pill-btn mono" aria-label="Copy email address">
+                <i class="ri-file-copy-line" aria-hidden="true"></i>
+                <span id="copy-email-text">Copy</span>
+              </button>
+            </div>
+
+            <a href="https://wa.me/6287774024460" target="_blank" rel="noopener noreferrer" class="endpoint-row">
+              <div>
+                <span class="spec-key mono">WhatsApp / Phone (Kab. Tangerang, Banten)</span>
+                <span style="font-weight: 700;">+62 877-7402-4460</span>
+              </div>
+              <i class="ri-whatsapp-line" aria-hidden="true" style="font-size: 1.35rem; color: var(--accent);"></i>
+            </a>
+
+            <a href="https://www.kael.web.id/" target="_blank" rel="noopener noreferrer" class="endpoint-row">
+              <div>
+                <span class="spec-key mono">Personal Domain</span>
+                <span style="font-weight: 700;">https://www.kael.web.id/</span>
+              </div>
+              <i class="ri-global-line" aria-hidden="true" style="font-size: 1.35rem; color: var(--accent);"></i>
+            </a>
+
+            <a href="https://github.com/Raiyll" target="_blank" rel="noopener noreferrer" class="endpoint-row">
+              <div>
+                <span class="spec-key mono">GitHub Profile</span>
+                <span style="font-weight: 700;">github.com/Raiyll</span>
+              </div>
+              <i class="ri-github-line" aria-hidden="true" style="font-size: 1.35rem; color: var(--accent);"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/in/ahmad-rafi-fadhilah/" target="_blank" rel="noopener noreferrer"
+              class="endpoint-row">
+              <div>
+                <span class="spec-key mono">LinkedIn</span>
+                <span style="font-weight: 700;">linkedin.com/in/ahmad-rafi-fadhilah</span>
+              </div>
+              <i class="ri-linkedin-box-line" aria-hidden="true" style="font-size: 1.35rem; color: var(--accent);"></i>
+            </a>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px;">
+              <a href="https://www.instagram.com/kaelyinz/" target="_blank" rel="noopener noreferrer"
+                class="mac-pill-btn">
+                <i class="ri-instagram-line" aria-hidden="true"></i>
+                <span>@kaelyinz</span>
+              </a>
+              <a href="https://instagram.com/rai.codes" target="_blank" rel="noopener noreferrer" class="mac-pill-btn">
+                <i class="ri-instagram-line" aria-hidden="true"></i>
+                <span>@rai.codes</span>
+              </a>
+              <a href="https://www.facebook.com/ahmadrafi.fadilah.7/?locale=id_ID" target="_blank"
+                rel="noopener noreferrer" class="mac-pill-btn">
+                <i class="ri-facebook-circle-line" aria-hidden="true"></i>
+                <span>Facebook</span>
+              </a>
+              <a href="https://twitter.com/naleviacktan" target="_blank" rel="noopener noreferrer" class="mac-pill-btn">
+                <i class="ri-twitter-x-line" aria-hidden="true"></i>
+                <span>@naleviacktan</span>
+              </a>
+            </div>
+          </div>
+
+          <form id="contact-form" class="mail-composer">
+            <div class="form-2col">
+              <div>
+                <label for="sender-name" class="field-label">Your Name *</label>
+                <input type="text" id="sender-name" name="name" placeholder="Your Name" required class="mac-input">
+              </div>
+              <div>
+                <label for="sender-email" class="field-label">Email Address *</label>
+                <input type="email" id="sender-email" name="email" placeholder="email@example.com" required
+                  class="mac-input">
+              </div>
+            </div>
+
+            <div>
+              <label for="sender-subject" class="field-label">Subject *</label>
+              <input type="text" id="sender-subject" name="subject"
+                placeholder="Project collaboration or Full-Stack role inquiry" required class="mac-input">
+            </div>
+
+            <div>
+              <label for="sender-message" class="field-label">Message *</label>
+              <textarea id="sender-message" name="message" rows="4"
+                placeholder="Write your project details, timeline, or questions here..." required
+                class="mac-textarea"></textarea>
+            </div>
+
+            <div id="form-status-box" class="mac-state-box" hidden aria-live="polite"></div>
+
+            <div
+              style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+              <span class="mono" style="font-size: 0.75rem; color: var(--text-secondary);">
+                Mail Relay: EmailJS (service_ls6m80q)
+              </span>
+              <button type="submit" id="mail-submit-btn" class="btn-primary-mac">
+                <i class="ri-send-plane-fill" aria-hidden="true"></i>
+                <span id="mail-submit-label">Send Message</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MACOS WORKSTATION FOOTER -->
+  <footer class="mac-footer">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <img src="img/L.jpeg" alt="Ahmad Rafi Fadhilah emblem" width="28" height="28" style="border-radius: 6px;">
+      <span>© 2026 Ahmad Rafi Fadhilah · Kab. Tangerang, Banten · Full-Stack Developer</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <a href="https://www.kael.web.id/" target="_blank" rel="noopener noreferrer" class="mac-pill-btn">kael.web.id</a>
+      <a href="https://github.com/Raiyll" target="_blank" rel="noopener noreferrer" class="mac-pill-btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/ahmad-rafi-fadhilah/" target="_blank" rel="noopener noreferrer"
+        class="mac-pill-btn">LinkedIn</a>
+      <a href="mailto:ahmadrafifadilah50@gmail.com" class="mac-pill-btn">Email</a>
+    </div>
+  </footer>
+
+  <!-- MACOS BOTTOM DOCK -->
+  <nav class="mac-dock" aria-label="macOS Application Dock">
+    <button type="button" class="dock-btn is-running" data-dock-target="win-profile">
+      <i class="ri-macbook-line" aria-hidden="true"></i>
+      <span>About Mac</span>
+    </button>
+    <button type="button" class="dock-btn is-running" data-dock-target="win-experience">
+      <i class="ri-briefcase-4-line" aria-hidden="true"></i>
+      <span>Experience</span>
+    </button>
+    <button type="button" class="dock-btn is-running" data-dock-target="win-awards">
+      <i class="ri-medal-line" aria-hidden="true"></i>
+      <span>Awards</span>
+    </button>
+    <button type="button" class="dock-btn is-running" data-dock-target="win-projects">
+      <i class="ri-folder-5-line" aria-hidden="true"></i>
+      <span>Finder</span>
+    </button>
+    <button type="button" class="dock-btn is-running" data-dock-target="win-skills">
+      <i class="ri-cpu-line" aria-hidden="true"></i>
+      <span>Stack</span>
+    </button>
+    <button type="button" class="dock-btn is-running" data-dock-target="win-terminal">
+      <i class="ri-terminal-box-line" aria-hidden="true"></i>
+      <span>Terminal</span>
+    </button>
+    <button type="button" class="dock-btn is-running" data-dock-target="win-mail">
+      <i class="ri-mail-line" aria-hidden="true"></i>
+      <span>Mail</span>
+    </button>
+  </nav>
+
+  <!-- APPLE MENU / SPOTLIGHT LAUNCHER MODAL (Closable with Escape) -->
+  <div id="mac-modal-backdrop" class="mac-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+    hidden>
+    <div class="mac-modal">
+      <div class="mac-titlebar">
+        <div class="traffic-lights">
+          <button type="button" id="modal-close-btn" class="tl-btn" aria-label="Close Apple Menu dialog (Escape)">
+            <span class="tl-dot close" aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="window-title-center">
+          <i class="ri-apple-fill" aria-hidden="true"></i>
+          <span id="modal-title" class="window-title-text">RafiMac System Center</span>
+        </div>
+        <span class="window-badge mono">Spotlight</span>
+      </div>
+      <div class="window-body" id="modal-body-content"></div>
     </div>
   </div>
-</footer>
 
-<!-- Scroll to Top Button -->
-<div class="scroll-top" id="scroll-top">
-  <i class="ri-arrow-up-line text-xl font-bold"></i>
-</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const htmlEl = document.documentElement;
+      const lockScreen = document.getElementById('mac-lockscreen');
+      const loginForm = document.getElementById('mac-login-form');
+      const unlockResumeBtn = document.getElementById('unlock-resume-btn');
+      const unlockProjectsBtn = document.getElementById('unlock-projects-btn');
+      const lockScreenBtn = document.getElementById('lock-screen-btn');
+      const themeToggleBtn = document.getElementById('theme-toggle-btn');
+      const lockThemeBtn = document.getElementById('lock-theme-btn');
+      const themeLabel = document.getElementById('theme-label');
+      const lockThemeLabel = document.getElementById('lock-theme-label');
+      const menubarClock = document.getElementById('menubar-clock');
+      const lockClockDisplay = document.getElementById('lock-clock-display');
+      const lockDateDisplay = document.getElementById('lock-date-display');
+      const windows = Array.from(document.querySelectorAll('.mac-window'));
+      const dockButtons = Array.from(document.querySelectorAll('[data-dock-target]'));
+      const workspaceButtons = Array.from(document.querySelectorAll('[data-workspace]'));
+      const wmModeBtn = document.getElementById('wm-mode-btn');
+      const wmModeLabel = document.getElementById('wm-mode-label');
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  // Initialize AOS
-  AOS.init({ 
-    duration: 1000, 
-    once: true,
-    offset: 100,
-    easing: 'ease-out-cubic'
-  });
-
-  // Scroll Progress Bar
-  window.addEventListener('scroll', function() {
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    let scrolled = (winScroll / height) * 100;
-    document.getElementById("scroll-progress").style.width = scrolled + "%";
-    
-    // Show/hide scroll to top button
-    const scrollTop = document.getElementById('scroll-top');
-    if (winScroll > 500) {
-      scrollTop.classList.add('visible');
-    } else {
-      scrollTop.classList.remove('visible');
-    }
-  });
-
-  // Scroll to top functionality
-  document.getElementById('scroll-top').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // Smooth scroll for navigation
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Theme persistence across Lock Screen and Desktop
+      const savedTheme = localStorage.getItem('rafimac-theme') || 'dark';
+      function applyTheme(theme) {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('rafimac-theme', theme);
+        themeLabel.textContent = theme === 'dark' ? 'Dark' : 'Light';
+        lockThemeLabel.textContent = theme === 'dark' ? 'Theme: Dark' : 'Theme: Light';
       }
-    });
-  });
+      applyTheme(savedTheme);
 
-  // Particle Canvas Animation
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+      function toggleTheme() {
+        const nextTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+      }
 
-  const particles = [];
-  const particleCount = 50;
+      themeToggleBtn.addEventListener('click', toggleTheme);
+      lockThemeBtn.addEventListener('click', toggleTheme);
 
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.radius = Math.random() * 2 + 1;
-      this.opacity = Math.random() * 0.5 + 0.2;
-    }
+      // Update Lock Screen & Menu Bar clocks (Asia/Jakarta WIB)
+      function updateClocks() {
+        const now = new Date();
+        try {
+          const timeStr = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Asia/Jakarta',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          }).format(now);
+          const dateStr = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Asia/Jakarta',
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long'
+          }).format(now);
+          const shortBar = new Intl.DateTimeFormat('en-GB', {
+            timeZone: 'Asia/Jakarta',
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          }).format(now);
 
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
+          lockClockDisplay.textContent = timeStr;
+          lockDateDisplay.textContent = dateStr;
+          menubarClock.textContent = shortBar + ' WIB';
+        } catch (err) {
+          const fallback = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          lockClockDisplay.textContent = fallback;
+          menubarClock.textContent = fallback + ' WIB';
+        }
+      }
+      updateClocks();
+      setInterval(updateClocks, 15000);
 
-      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-    }
+      // MacBook Lock Screen Unlock & Lock mechanics
+      let isLockMotionEnabled = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let lockParticleRaf = null;
 
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201, 110, 75, ${this.opacity})`;
-      ctx.fill();
-    }
-  }
+      function unlockMacBook(targetWindowId) {
+        lockScreen.classList.add('is-unlocked');
+        if (lockParticleRaf) {
+          cancelAnimationFrame(lockParticleRaf);
+          lockParticleRaf = null;
+        }
+        if (targetWindowId) {
+          const win = document.getElementById(targetWindowId);
+          if (win) {
+            focusWindow(win, true);
+          }
+        }
+      }
 
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
+      function lockMacBook() {
+        lockScreen.classList.remove('is-unlocked');
+        startLockParticles();
+        const passInput = document.getElementById('mac-passcode-input');
+        if (passInput) {
+          passInput.value = '';
+          passInput.focus();
+        }
+      }
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    particles.forEach((particle, index) => {
-      particle.update();
-      particle.draw();
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        unlockMacBook('win-profile');
+      });
 
-      // Connect particles
-      particles.slice(index + 1).forEach(otherParticle => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+      unlockResumeBtn.addEventListener('click', function () {
+        unlockMacBook('win-experience');
+      });
 
-        if (distance < 150) {
+      unlockProjectsBtn.addEventListener('click', function () {
+        unlockMacBook('win-projects');
+      });
+
+      lockScreenBtn.addEventListener('click', lockMacBook);
+
+      // Lock Screen Custom Wallpaper Preset Switcher & Photo Upload
+      const lockWpBtn = document.getElementById('lock-wp-btn');
+      const lockWpLabel = document.getElementById('lock-wp-label');
+      const lockWpUpload = document.getElementById('lock-wp-upload');
+      const wpPresets = ['starry', 'photo', 'dusk'];
+      const wpLabels = {
+        starry: 'Wallpaper: Starry',
+        photo: 'Wallpaper: Foto Default',
+        dusk: 'Wallpaper: Warm Dusk',
+        custom: 'Wallpaper: Foto Custom'
+      };
+
+      const savedCustomPhoto = localStorage.getItem('rafimac-lock-custom-photo');
+      if (savedCustomPhoto) {
+        htmlEl.style.setProperty('--lock-wallpaper-image', 'url("' + savedCustomPhoto + '")');
+      }
+
+      function applyLockWallpaper(mode) {
+        lockScreen.setAttribute('data-lock-wp', mode);
+        localStorage.setItem('rafimac-lock-wp', mode);
+        if (lockWpLabel) {
+          lockWpLabel.textContent = wpLabels[mode] || 'Wallpaper: Starry';
+        }
+      }
+
+      const initialWpMode = localStorage.getItem('rafimac-lock-wp') || 'starry';
+      applyLockWallpaper(initialWpMode);
+
+      if (lockWpBtn) {
+        lockWpBtn.addEventListener('click', function () {
+          const current = lockScreen.getAttribute('data-lock-wp') || 'starry';
+          const availableModes = localStorage.getItem('rafimac-lock-custom-photo')
+            ? ['starry', 'photo', 'dusk', 'custom']
+            : wpPresets;
+          const nextIdx = (availableModes.indexOf(current) + 1) % availableModes.length;
+          const nextMode = availableModes[nextIdx];
+          if (nextMode === 'photo') {
+            htmlEl.style.setProperty('--lock-wallpaper-image', "url('img/wpp.png')");
+          } else if (nextMode === 'custom') {
+            const customData = localStorage.getItem('rafimac-lock-custom-photo');
+            if (customData) {
+              htmlEl.style.setProperty('--lock-wallpaper-image', 'url("' + customData + '")');
+            }
+          }
+          applyLockWallpaper(nextMode);
+        });
+      }
+
+      if (lockWpUpload) {
+        lockWpUpload.addEventListener('change', function (e) {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = function (ev) {
+            const dataUrl = ev.target && ev.target.result;
+            if (typeof dataUrl === 'string') {
+              htmlEl.style.setProperty('--lock-wallpaper-image', 'url("' + dataUrl + '")');
+              try {
+                localStorage.setItem('rafimac-lock-custom-photo', dataUrl);
+              } catch (storageErr) {
+                // Photo works for current session even if file exceeds localStorage quota
+              }
+              applyLockWallpaper('custom');
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // Interactive Lock Screen Cat Companion (Mochi)
+      const lockCatStage = document.getElementById('lock-cat-stage');
+      const lockCatBtn = document.getElementById('lock-cat-btn');
+      const lockCatBubble = document.getElementById('lock-cat-bubble');
+      const catPupilL = document.getElementById('cat-pupil-l');
+      const catPupilR = document.getElementById('cat-pupil-r');
+      const passcodeInput = document.getElementById('mac-passcode-input');
+      const catMessages = [
+        'Purrr ~ Selamat datang di MacBook Ahmad Rafi!',
+        'Meow! Klik Unlock atau tekan Enter buat masuk ~',
+        'Nyaa ~ Jangan lupa cek 6 project di Finder ya!',
+        'Purrr... Skor Python SIC Ahmad Rafi 99.7 lho!',
+        'Meow ~ Bisa ganti foto wallpaper di kanan atas!'
+      ];
+      let catMsgIdx = 0;
+      let purrTimer = null;
+
+      if (lockCatBtn && lockCatStage && lockCatBubble) {
+        lockCatBtn.addEventListener('click', function () {
+          lockCatBubble.textContent = catMessages[catMsgIdx % catMessages.length];
+          catMsgIdx += 1;
+          lockCatStage.classList.add('is-purring');
+          if (purrTimer) clearTimeout(purrTimer);
+          purrTimer = setTimeout(function () {
+            lockCatStage.classList.remove('is-purring');
+          }, 1800);
+        });
+      }
+
+      if (passcodeInput && lockCatStage && lockCatBubble) {
+        passcodeInput.addEventListener('input', function () {
+          lockCatStage.classList.add('is-twitching');
+          lockCatBubble.textContent = 'Meow! Tekan Enter aja, ga perlu password rahasia ~';
+          setTimeout(function () {
+            lockCatStage.classList.remove('is-twitching');
+          }, 260);
+        });
+      }
+
+      // Lock Screen Interactive Firefly / Starlight Particle Canvas + Cat Eye Tracking
+      const particleCanvas = document.getElementById('lock-particle-canvas');
+      const lockMotionBtn = document.getElementById('lock-motion-btn');
+      const lockMotionLabel = document.getElementById('lock-motion-label');
+      const pointer = { x: -9999, y: -9999 };
+      let particles = [];
+
+      function initParticles() {
+        if (!particleCanvas) return;
+        const w = window.innerWidth || 1280;
+        const h = window.innerHeight || 800;
+        particleCanvas.width = w;
+        particleCanvas.height = h;
+        const count = Math.min(72, Math.max(36, Math.floor((w * h) / 18000)));
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.65,
+            vy: (Math.random() - 0.5) * 0.65 - 0.15,
+            r: Math.random() * 2.6 + 1.2,
+            alpha: Math.random() * 0.6 + 0.35,
+            warm: i % 2 === 0
+          });
+        }
+      }
+
+      function drawParticlesFrame() {
+        if (!particleCanvas) return;
+        const ctx = particleCanvas.getContext('2d');
+        if (!ctx) return;
+        const w = particleCanvas.width;
+        const h = particleCanvas.height;
+        ctx.clearRect(0, 0, w, h);
+
+        const isLight = htmlEl.getAttribute('data-theme') === 'light';
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          if (isLockMotionEnabled) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = w;
+            if (p.x > w) p.x = 0;
+            if (p.y < 0) p.y = h;
+            if (p.y > h) p.y = 0;
+
+            const dx = pointer.x - p.x;
+            const dy = pointer.y - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 140 && dist > 1) {
+              p.x -= (dx / dist) * 0.75;
+              p.y -= (dy / dist) * 0.75;
+            }
+          }
+
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(201, 110, 75, ${0.2 * (1 - distance / 150)})`;
-          ctx.lineWidth = 1;
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(otherParticle.x, otherParticle.y);
-          ctx.stroke();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          if (p.warm) {
+            ctx.fillStyle = isLight
+              ? 'rgba(166, 65, 34, ' + p.alpha + ')'
+              : 'rgba(224, 122, 95, ' + p.alpha + ')';
+          } else {
+            ctx.fillStyle = isLight
+              ? 'rgba(29, 22, 18, ' + (p.alpha * 0.6) + ')'
+              : 'rgba(245, 242, 235, ' + p.alpha + ')';
+          }
+          ctx.fill();
+
+          // Subtle constellation lines between nearby particles
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const ndx = p.x - p2.x;
+            const ndy = p.y - p2.y;
+            const ndist = Math.sqrt(ndx * ndx + ndy * ndy);
+            if (ndist < 115) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = isLight
+                ? 'rgba(166, 65, 34, ' + ((1 - ndist / 115) * 0.18) + ')'
+                : 'rgba(224, 122, 95, ' + ((1 - ndist / 115) * 0.22) + ')';
+              ctx.lineWidth = 0.85;
+              ctx.stroke();
+            }
+          }
+
+          // Constellation lines near pointer
+          const pdx = pointer.x - p.x;
+          const pdy = pointer.y - p.y;
+          const pdist = Math.sqrt(pdx * pdx + pdy * pdy);
+          if (pdist < 160) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(pointer.x, pointer.y);
+            ctx.strokeStyle = isLight
+              ? 'rgba(166, 65, 34, ' + ((1 - pdist / 160) * 0.38) + ')'
+              : 'rgba(224, 122, 95, ' + ((1 - pdist / 160) * 0.45) + ')';
+            ctx.lineWidth = 1.1;
+            ctx.stroke();
+          }
+        }
+
+        if (isLockMotionEnabled && !lockScreen.classList.contains('is-unlocked')) {
+          lockParticleRaf = requestAnimationFrame(drawParticlesFrame);
+        }
+      }
+
+      function startLockParticles() {
+        if (lockParticleRaf) {
+          cancelAnimationFrame(lockParticleRaf);
+          lockParticleRaf = null;
+        }
+        drawParticlesFrame();
+      }
+
+      function syncLockMotionUI() {
+        if (lockMotionBtn && lockMotionLabel) {
+          lockMotionBtn.setAttribute('aria-pressed', isLockMotionEnabled ? 'true' : 'false');
+          lockMotionLabel.textContent = isLockMotionEnabled ? 'Particles: On' : 'Particles: Paused';
+        }
+        if (lockCatStage) {
+          lockCatStage.classList.toggle('is-paused', !isLockMotionEnabled);
+        }
+        startLockParticles();
+      }
+
+      if (lockMotionBtn) {
+        lockMotionBtn.addEventListener('click', function () {
+          isLockMotionEnabled = !isLockMotionEnabled;
+          syncLockMotionUI();
+        });
+      }
+
+      lockScreen.addEventListener('mousemove', function (e) {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        if (isLockMotionEnabled && catPupilL && catPupilR && lockCatBtn) {
+          const rect = lockCatBtn.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const angle = Math.atan2(e.clientY - cy, e.clientX - cx);
+          const maxShift = 1.5;
+          const ox = Math.cos(angle) * maxShift;
+          const oy = Math.sin(angle) * maxShift;
+          catPupilL.setAttribute('cx', (39 + ox).toFixed(2));
+          catPupilL.setAttribute('cy', (29 + oy).toFixed(2));
+          catPupilR.setAttribute('cx', (53 + ox).toFixed(2));
+          catPupilR.setAttribute('cy', (29 + oy).toFixed(2));
         }
       });
-    });
 
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  // Resize canvas
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-
-  // Cursor Trail Effect
-  const cursorDot = document.getElementById('cursor-dot');
-  let mouseX = 0, mouseY = 0;
-  let dotX = 0, dotY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursorDot.style.opacity = '1';
-  });
-
-  function animateCursor() {
-    dotX += (mouseX - dotX) * 0.15;
-    dotY += (mouseY - dotY) * 0.15;
-    cursorDot.style.left = dotX + 'px';
-    cursorDot.style.top = dotY + 'px';
-    requestAnimationFrame(animateCursor);
-  }
-
-  animateCursor();
-
-  // 3D Tilt Effect on Cards
-  const tiltCards = document.querySelectorAll('.tilt-card');
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = (y - centerY) / 10;
-      const rotateY = (centerX - x) / 10;
-      
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-16px) scale(1.03)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-
-  // Magnetic Button Effect
-  const magneticButtons = document.querySelectorAll('.btn-magnetic');
-  magneticButtons.forEach(button => {
-    button.addEventListener('mousemove', (e) => {
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      button.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
-    });
-    
-    button.addEventListener('mouseleave', () => {
-      button.style.transform = '';
-    });
-  });
-
-  // Form submission with animation
- document.addEventListener("DOMContentLoaded", function() {
-  // 1. Inisialisasi EmailJS (Pake Public Key lu)
-  emailjs.init("_nSDh4VKyqGLmRB6A"); 
-
-  const form = document.getElementById("contact-form");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    // 2. Ambil tombol buat animasi loading
-    const button = this.querySelector('button[type="submit"]');
-    const originalText = button.innerHTML;
-    
-    // 3. Ubah tombol jadi status "Loading"
-    button.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Mengirim...';
-    button.disabled = true;
-
-    // 4. Eksekusi Pengiriman EmailJS
-    // Ganti 'service_id' dan 'template_id' sesuai dashboard lu
-    emailjs.sendForm("service_ls6m80q", "template_ag34z9q", this)
-      .then(function() {
-        // --- JIKA BERHASIL ---
-        button.innerHTML = '<i class="ri-checkbox-circle-line"></i> Terkirim!';
-        button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-        
-        // Kasih jeda 2 detik sebelum balik ke normal
-        setTimeout(() => {
-          button.innerHTML = originalText;
-          button.disabled = false;
-          button.style.background = '';
-          form.reset(); // Reset form setelah berhasil
-          alert('Thanks for contacting me!');
-        }, 2000);
-
-      }, function(error) {
-        // --- JIKA GAGAL ---
-        alert("Gagal mengirim pesan... Cek koneksi atau konfigurasi EmailJS.");
-        console.log("FAILED...", error);
-        
-        // Balikin tombol ke awal biar user bisa coba lagi
-        button.innerHTML = originalText;
-        button.disabled = false;
+      window.addEventListener('resize', function () {
+        if (!lockScreen.classList.contains('is-unlocked')) {
+          initParticles();
+          drawParticlesFrame();
+        }
       });
-  });
-});
-</script>
+
+      initParticles();
+      syncLockMotionUI();
+
+      document.getElementById('print-resume-btn').addEventListener('click', function () {
+        window.print();
+      });
+
+      // Window Manager & Dock Synchronization
+      function syncDockState() {
+        dockButtons.forEach(function (btn) {
+          const targetId = btn.getAttribute('data-dock-target');
+          const win = document.getElementById(targetId);
+          if (!win) return;
+          const isHidden = win.classList.contains('is-hidden');
+          const isMinimized = win.getAttribute('data-minimized') === 'true';
+          btn.classList.toggle('is-running', !isHidden && !isMinimized);
+          btn.classList.toggle('is-minimized', isMinimized || isHidden);
+        });
+      }
+
+      function focusWindow(winEl, scrollIntoView) {
+        if (!winEl) return;
+        winEl.classList.remove('is-hidden');
+        winEl.removeAttribute('data-minimized');
+        windows.forEach(function (w) {
+          w.classList.toggle('is-focused', w === winEl);
+        });
+        syncDockState();
+        if (scrollIntoView) {
+          winEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+
+      windows.forEach(function (win) {
+        win.addEventListener('mousedown', function () {
+          focusWindow(win, false);
+        });
+      });
+
+      document.querySelectorAll('[data-win-action]').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const action = btn.getAttribute('data-win-action');
+          const targetId = btn.getAttribute('data-target');
+          const win = document.getElementById(targetId);
+          if (!win) return;
+
+          if (action === 'minimize') {
+            win.classList.add('is-hidden');
+            win.setAttribute('data-minimized', 'true');
+            syncDockState();
+          } else if (action === 'maximize') {
+            win.classList.toggle('is-maximized');
+            focusWindow(win, true);
+          } else if (action === 'close') {
+            win.classList.add('is-hidden');
+            win.removeAttribute('data-minimized');
+            syncDockState();
+          }
+        });
+      });
+
+      dockButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const targetId = btn.getAttribute('data-dock-target');
+          const win = document.getElementById(targetId);
+          if (!win) return;
+          if (win.classList.contains('is-hidden')) {
+            focusWindow(win, true);
+          } else if (win.classList.contains('is-focused')) {
+            win.classList.add('is-hidden');
+            win.setAttribute('data-minimized', 'true');
+            syncDockState();
+          } else {
+            focusWindow(win, true);
+          }
+        });
+      });
+
+      document.querySelectorAll('[data-focus-window]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          const targetId = link.getAttribute('data-focus-window');
+          const win = document.getElementById(targetId);
+          if (win) {
+            e.preventDefault();
+            focusWindow(win, true);
+          }
+        });
+      });
+
+      // Stage Manager vs Free Drag Window Mode
+      let isFloatingMode = false;
+      let highestZ = 30;
+
+      function resetWindowPositions() {
+        windows.forEach(function (w) {
+          w.style.transform = '';
+          w.style.zIndex = '';
+          w.setAttribute('data-dx', '0');
+          w.setAttribute('data-dy', '0');
+        });
+      }
+
+      wmModeBtn.addEventListener('click', function () {
+        isFloatingMode = !isFloatingMode;
+        wmModeBtn.setAttribute('aria-pressed', isFloatingMode ? 'true' : 'false');
+        wmModeBtn.classList.toggle('is-active', isFloatingMode);
+        wmModeLabel.textContent = isFloatingMode ? 'Stage: Free Drag' : 'Stage: Tiled';
+        if (!isFloatingMode) {
+          resetWindowPositions();
+        }
+      });
+
+      windows.forEach(function (win) {
+        const header = win.querySelector('.mac-titlebar');
+        if (!header) return;
+        let dragging = false;
+        let startX = 0;
+        let startY = 0;
+        let baseDx = 0;
+        let baseDy = 0;
+
+        header.addEventListener('pointerdown', function (e) {
+          if (!isFloatingMode || e.target.closest('button')) return;
+          dragging = true;
+          highestZ += 1;
+          win.style.zIndex = String(highestZ);
+          focusWindow(win, false);
+          startX = e.clientX;
+          startY = e.clientY;
+          baseDx = parseFloat(win.getAttribute('data-dx') || '0');
+          baseDy = parseFloat(win.getAttribute('data-dy') || '0');
+          header.setPointerCapture(e.pointerId);
+        });
+
+        header.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          const dx = baseDx + (e.clientX - startX);
+          const dy = baseDy + (e.clientY - startY);
+          win.setAttribute('data-dx', String(dx));
+          win.setAttribute('data-dy', String(dy));
+          win.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0)';
+        });
+
+        header.addEventListener('pointerup', function (e) {
+          if (!dragging) return;
+          dragging = false;
+          header.releasePointerCapture(e.pointerId);
+        });
+      });
+
+      function restoreAllWindows() {
+        isFloatingMode = false;
+        wmModeBtn.setAttribute('aria-pressed', 'false');
+        wmModeBtn.classList.remove('is-active');
+        wmModeLabel.textContent = 'Stage: Tiled';
+        resetWindowPositions();
+        workspaceButtons.forEach(function (b) {
+          const isAll = b.getAttribute('data-workspace') === 'all';
+          b.classList.toggle('is-active', isAll);
+          b.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+        });
+        windows.forEach(function (w) {
+          w.classList.remove('is-hidden', 'is-maximized');
+          w.removeAttribute('data-minimized');
+        });
+        syncDockState();
+      }
+
+      document.getElementById('restore-all-btn').addEventListener('click', restoreAllWindows);
+
+      workspaceButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const ws = btn.getAttribute('data-workspace');
+          workspaceButtons.forEach(function (b) {
+            const active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          windows.forEach(function (w) {
+            const group = w.getAttribute('data-workspace-group');
+            if (ws === 'all' || group === ws) {
+              w.classList.remove('is-hidden');
+              w.removeAttribute('data-minimized');
+            } else {
+              w.classList.add('is-hidden');
+            }
+          });
+          syncDockState();
+        });
+      });
+
+      // Interactive macOS zsh Terminal
+      const termOutput = document.getElementById('terminal-output');
+      const termForm = document.getElementById('terminal-form');
+      const termInput = document.getElementById('terminal-input');
+      const cmdHistory = ['about'];
+      let historyIdx = cmdHistory.length;
+
+      function appendTerminalLine(cmd, responseText) {
+        const cmdDiv = document.createElement('div');
+        const promptSpan = document.createElement('span');
+        promptSpan.className = 'zsh-prompt';
+        promptSpan.textContent = 'ahmadrafi@MacBook-Pro ~ % ';
+        cmdDiv.appendChild(promptSpan);
+        cmdDiv.appendChild(document.createTextNode(cmd));
+        termOutput.appendChild(cmdDiv);
+
+        if (responseText) {
+          const resDiv = document.createElement('div');
+          resDiv.style.color = 'var(--text-secondary)';
+          resDiv.style.whiteSpace = 'pre-line';
+          resDiv.textContent = responseText;
+          termOutput.appendChild(resDiv);
+        }
+        termOutput.scrollTop = termOutput.scrollHeight;
+      }
+
+      function executeCommand(rawCmd) {
+        const cmd = rawCmd.trim();
+        const lower = cmd.toLowerCase();
+        if (!cmd) return;
+
+        if (lower === 'clear') {
+          termOutput.innerHTML = '';
+          return;
+        }
+
+        if (lower === 'help') {
+          appendTerminalLine(cmd, [
+            'macOS zsh commands:',
+            '  about        Summary of Ahmad Rafi Fadhilah',
+            '  experience   Work experience at PT Tri Nindya Utama (BKKBN AMS)',
+            '  projects     List all 6 portfolio & resume projects',
+            '  certs        Samsung Innovation Campus Stage 1 & Stage 2 certificates',
+            '  awards       Competition honors (UNIPI, LKS ITSS, Storytelling)',
+            '  skills       Technical stack & spoken languages',
+            '  contact      Email, WhatsApp, kael.web.id, GitHub, LinkedIn',
+            '  lock         Lock MacBook screen and return to Login page',
+            '  clear        Clear terminal screen'
+          ].join('\n'));
+        } else if (lower === 'about' || lower === 'whoami') {
+          appendTerminalLine(cmd, [
+            'Ahmad Rafi Fadhilah | Full-Stack Developer (Kab. Tangerang, Banten)',
+            'Role: Full Stack Developer @ PT Tri Nindya Utama (Jun 2026 - Present)',
+            'School: SMKN 4 Tangerang | Software Engineering (Jul 2024 - Jul 2027)',
+            'Languages: Indonesian, English (Fluent), Japanese (Conversational)'
+          ].join('\n'));
+          focusWindow(document.getElementById('win-profile'), false);
+        } else if (lower === 'experience' || lower === 'work') {
+          appendTerminalLine(cmd, [
+            'PT Tri Nindya Utama | Full Stack Developer (Jun 2026 - Present)',
+            '- Built Audit Management System (AMS) Inspektorat BKKBN (Laravel, PHP, MySQL)',
+            '- Relational DB migrations, custom JSON bulk seeders, soft deletes',
+            '- Auditee Management, PIC/Pejabat Auditee, Eloquent belongsTo/hasMany/Eager Loading'
+          ].join('\n'));
+          focusWindow(document.getElementById('win-experience'), false);
+        } else if (lower === 'projects' || lower === 'ls') {
+          appendTerminalLine(cmd, [
+            '1. AMS Inspektorat BKKBN (Laravel, PHP, MySQL) - PT Tri Nindya Utama',
+            '2. Jamu! Digital UMKM Platform (1st Place UNIPI) -> https://djamu.vercel.app/',
+            '3. LootHub Gaming POS -> https://github.com/Raiyll/LootHub',
+            '4. Esemkabooks (C# Desktop Digital Book Management)',
+            '5. Esemka Store (Android Mobile POS in Java & Android Studio)',
+            '6. Real-Time IoT Temp & Humidity Alarm (ESP32, MQTT, HiveMQ, Python)'
+          ].join('\n'));
+          focusWindow(document.getElementById('win-projects'), false);
+        } else if (lower === 'certs' || lower === 'education') {
+          appendTerminalLine(cmd, [
+            '- SMKN 4 Tangerang | Software Engineering (Jul 2024 - Jul 2027)',
+            '- Samsung Innovation Campus Batch 7 Stage 2 (IoT: ESP32, MQTT, HiveMQ, Python)',
+            '- Samsung Innovation Campus Batch 7 Stage 1 (Python Programming, Score: 99.7)'
+          ].join('\n'));
+          focusWindow(document.getElementById('win-experience'), false);
+        } else if (lower === 'awards') {
+          appendTerminalLine(cmd, [
+            '- 1st Place: UMKM Digital Competition | UNIPI (Dec 2026)',
+            '- 2nd Place: LKS City Level IT Software Solutions for Business (Jan 2026)',
+            '- 2nd Place: Storytelling Competition'
+          ].join('\n'));
+          focusWindow(document.getElementById('win-awards'), false);
+        } else if (lower === 'skills') {
+          appendTerminalLine(cmd, [
+            'Web & Backend: Laravel, React.js, Next.js, PHP, TypeScript, Tailwind CSS',
+            'Mobile/Desktop/IoT: C#, Java, Kotlin, Android Studio, Python, ESP32, MQTT',
+            'Database & Tools: MySQL, MariaDB, Navicat, Git, Figma, Unity, Blender'
+          ].join('\n'));
+          focusWindow(document.getElementById('win-skills'), false);
+        } else if (lower === 'contact') {
+          appendTerminalLine(cmd, [
+            'Email    : ahmadrafifadilah50@gmail.com',
+            'Phone/WA : +62 877-7402-4460',
+            'Website  : https://www.kael.web.id/',
+            'GitHub   : https://github.com/Raiyll',
+            'LinkedIn : https://www.linkedin.com/in/ahmad-rafi-fadhilah/'
+          ].join('\n'));
+          focusWindow(document.getElementById('win-mail'), false);
+        } else if (lower === 'lock') {
+          appendTerminalLine(cmd, 'Locking MacBook screen...');
+          lockMacBook();
+        } else if (lower === 'theme') {
+          toggleTheme();
+          appendTerminalLine(cmd, 'Toggled macOS appearance.');
+        } else {
+          appendTerminalLine(cmd, "zsh: command not found: '" + cmd + "'. Type 'help' for available commands.");
+        }
+      }
+
+      termInput.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (historyIdx > 0) {
+            historyIdx -= 1;
+            termInput.value = cmdHistory[historyIdx];
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (historyIdx < cmdHistory.length - 1) {
+            historyIdx += 1;
+            termInput.value = cmdHistory[historyIdx];
+          } else {
+            historyIdx = cmdHistory.length;
+            termInput.value = '';
+          }
+        }
+      });
+
+      termForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const val = termInput.value.trim();
+        if (val) {
+          cmdHistory.push(val);
+          historyIdx = cmdHistory.length;
+        }
+        executeCommand(val);
+        termInput.value = '';
+      });
+
+      document.querySelectorAll('[data-run-cmd]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          executeCommand(btn.getAttribute('data-run-cmd'));
+        });
+      });
+
+      // Finder Projects Filter & UI States (Empty, Loading, Error - R-27)
+      const projSearch = document.getElementById('project-search');
+      const projFilterBtns = Array.from(document.querySelectorAll('[data-proj-filter]'));
+      const projRows = Array.from(document.querySelectorAll('.finder-item-row'));
+      const projStateBanner = document.getElementById('project-state-banner');
+      let activeProjCategory = 'all';
+
+      function renderProjectBanner(type, title, desc, actionText, actionCallback) {
+        projStateBanner.hidden = false;
+        projStateBanner.className = 'mac-state-box' + (type === 'error' ? ' is-error' : '');
+        projStateBanner.innerHTML = '';
+
+        const t = document.createElement('p');
+        t.style.fontWeight = '700';
+        t.textContent = title;
+        projStateBanner.appendChild(t);
+
+        const d = document.createElement('p');
+        d.style.fontSize = '0.86rem';
+        d.style.color = 'var(--text-secondary)';
+        d.textContent = desc;
+        projStateBanner.appendChild(d);
+
+        if (actionText && actionCallback) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'btn-secondary-mac';
+          btn.textContent = actionText;
+          btn.addEventListener('click', actionCallback);
+          projStateBanner.appendChild(btn);
+        }
+      }
+
+      function filterProjects() {
+        const query = projSearch.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        projRows.forEach(function (row) {
+          const cat = row.getAttribute('data-pkg-category');
+          const keywords = row.getAttribute('data-pkg-keywords') || '';
+          const text = row.textContent.toLowerCase() + ' ' + keywords;
+          const matchesCat = activeProjCategory === 'all' || cat === activeProjCategory;
+          const matchesQuery = !query || text.includes(query);
+
+          if (matchesCat && matchesQuery) {
+            row.style.display = '';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        if (visibleCount === 0) {
+          renderProjectBanner(
+            'empty',
+            'No Finder projects match "' + projSearch.value + '"',
+            'No items in /Users/ahmadrafi/Projects matched both the selected category and search query.',
+            'Reset Finder Filter',
+            function () {
+              projSearch.value = '';
+              activeProjCategory = 'all';
+              projFilterBtns.forEach(function (b) {
+                const isAll = b.getAttribute('data-proj-filter') === 'all';
+                b.classList.toggle('is-active', isAll);
+                b.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+              });
+              projStateBanner.hidden = true;
+              filterProjects();
+            }
+          );
+        } else {
+          projStateBanner.hidden = true;
+        }
+      }
+
+      projSearch.addEventListener('input', filterProjects);
+
+      projFilterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeProjCategory = btn.getAttribute('data-proj-filter');
+          projFilterBtns.forEach(function (b) {
+            const active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          filterProjects();
+        });
+      });
+
+      document.getElementById('finder-sync-btn').addEventListener('click', function () {
+        renderProjectBanner(
+          'loading',
+          'Reloading /Users/ahmadrafi/Projects...',
+          'Indexing 6 projects across PT Tri Nindya Utama, UNIPI, LKS ITSS, and Samsung Innovation Campus.'
+        );
+        setTimeout(function () {
+          renderProjectBanner(
+            'ok',
+            'Finder directory indexed (6 projects verified)',
+            'All project entries and repository links are up to date.',
+            'Dismiss',
+            function () {
+              projStateBanner.hidden = true;
+            }
+          );
+        }, 400);
+      });
+
+      document.getElementById('finder-verify-btn').addEventListener('click', function () {
+        renderProjectBanner(
+          'error',
+          'Endpoint notice: AMS BKKBN is an internal government system & LootHub demo is pending',
+          'Jamu! (https://djamu.vercel.app/) is live. AMS Inspektorat BKKBN runs on internal government infrastructure, and LootHub source code is available on GitHub.',
+          'Dismiss Notice',
+          function () {
+            projStateBanner.hidden = true;
+          }
+        );
+      });
+
+      // Activity Monitor Skills Filter & Empty State
+      const skillSearch = document.getElementById('skill-search');
+      const skillCatBtns = Array.from(document.querySelectorAll('[data-skill-cat]'));
+      const skillRows = Array.from(document.querySelectorAll('#skills-table-body tr'));
+      const skillEmptyState = document.getElementById('skill-empty-state');
+      let activeSkillCat = 'all';
+
+      function filterSkills() {
+        const query = skillSearch.value.trim().toLowerCase();
+        let visible = 0;
+
+        skillRows.forEach(function (row) {
+          const cat = row.getAttribute('data-mod-cat');
+          const keywords = row.getAttribute('data-mod-name') || '';
+          const text = row.textContent.toLowerCase() + ' ' + keywords;
+          const matchesCat = activeSkillCat === 'all' || cat === activeSkillCat;
+          const matchesQuery = !query || text.includes(query);
+
+          if (matchesCat && matchesQuery) {
+            row.style.display = '';
+            visible++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        skillEmptyState.hidden = visible > 0;
+      }
+
+      skillSearch.addEventListener('input', filterSkills);
+
+      skillCatBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeSkillCat = btn.getAttribute('data-skill-cat');
+          skillCatBtns.forEach(function (b) {
+            const active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          filterSkills();
+        });
+      });
+
+      document.getElementById('reset-skill-filter-btn').addEventListener('click', function () {
+        skillSearch.value = '';
+        activeSkillCat = 'all';
+        skillCatBtns.forEach(function (b) {
+          const isAll = b.getAttribute('data-skill-cat') === 'all';
+          b.classList.toggle('is-active', isAll);
+          b.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+        });
+        filterSkills();
+      });
+
+      // Copy Email button
+      const copyEmailBtn = document.getElementById('copy-email-btn');
+      const copyEmailText = document.getElementById('copy-email-text');
+      copyEmailBtn.addEventListener('click', function () {
+        const email = 'ahmadrafifadilah50@gmail.com';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(function () {
+            copyEmailText.textContent = 'Copied!';
+            setTimeout(function () {
+              copyEmailText.textContent = 'Copy';
+            }, 2000);
+          });
+        } else {
+          copyEmailText.textContent = 'Use mailto';
+        }
+      });
+
+      // EmailJS Contact Form
+      const contactForm = document.getElementById('contact-form');
+      const formStatusBox = document.getElementById('form-status-box');
+      const mailSubmitBtn = document.getElementById('mail-submit-btn');
+      const mailSubmitLabel = document.getElementById('mail-submit-label');
+
+      function showFormStatus(isError, title, message) {
+        formStatusBox.hidden = false;
+        formStatusBox.className = 'mac-state-box' + (isError ? ' is-error' : '');
+        formStatusBox.innerHTML = '';
+
+        const t = document.createElement('p');
+        t.style.fontWeight = '700';
+        t.textContent = title;
+        formStatusBox.appendChild(t);
+
+        const d = document.createElement('p');
+        d.style.fontSize = '0.86rem';
+        d.style.color = 'var(--text-secondary)';
+        d.textContent = message;
+        formStatusBox.appendChild(d);
+      }
+
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        mailSubmitBtn.disabled = true;
+        mailSubmitLabel.textContent = 'Sending...';
+        showFormStatus(
+          false,
+          'Sending message via Mail.app SMTP...',
+          'Connecting to EmailJS relay (service_ls6m80q).'
+        );
+
+        if (typeof emailjs === 'undefined') {
+          showFormStatus(
+            true,
+            'SMTP Relay is offline in this environment',
+            'Please reach out directly via ahmadrafifadilah50@gmail.com or WhatsApp (+62 877-7402-4460).'
+          );
+          mailSubmitBtn.disabled = false;
+          mailSubmitLabel.textContent = 'Send Message';
+          return;
+        }
+
+        try {
+          emailjs.init('_nSDh4VKyqGLmRB6A');
+          emailjs.sendForm('service_ls6m80q', 'template_ag34z9q', contactForm)
+            .then(function () {
+              showFormStatus(
+                false,
+                'Message sent to Ahmad Rafi Fadhilah',
+                'Thank you for reaching out. Your message has been delivered.'
+              );
+              contactForm.reset();
+              mailSubmitBtn.disabled = false;
+              mailSubmitLabel.textContent = 'Send Message';
+            })
+            .catch(function () {
+              showFormStatus(
+                true,
+                'Delivery failed over EmailJS relay',
+                'Check your connection and retry, or email ahmadrafifadilah50@gmail.com directly.'
+              );
+              mailSubmitBtn.disabled = false;
+              mailSubmitLabel.textContent = 'Retry Send';
+            });
+        } catch (err) {
+          showFormStatus(
+            true,
+            'Could not initialize SMTP client',
+            'Please email ahmadrafifadilah50@gmail.com directly.'
+          );
+          mailSubmitBtn.disabled = false;
+          mailSubmitLabel.textContent = 'Retry Send';
+        }
+      });
+
+      // Apple Menu Modal (Closable with Escape)
+      const modalBackdrop = document.getElementById('mac-modal-backdrop');
+      const modalBody = document.getElementById('modal-body-content');
+      const appleMenuBtn = document.getElementById('apple-menu-btn');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+      let lastTrigger = null;
+
+      function closeModal() {
+        if (modalBackdrop.hidden) return;
+        modalBackdrop.hidden = true;
+        appleMenuBtn.setAttribute('aria-expanded', 'false');
+        if (lastTrigger && typeof lastTrigger.focus === 'function') {
+          lastTrigger.focus();
+        }
+      }
+
+      modalCloseBtn.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', function (e) {
+        if (e.target === modalBackdrop) closeModal();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modalBackdrop.hidden) {
+          closeModal();
+        }
+      });
+
+      appleMenuBtn.addEventListener('click', function () {
+        lastTrigger = appleMenuBtn;
+        modalBody.innerHTML = '';
+
+        const intro = document.createElement('p');
+        intro.style.color = 'var(--text-secondary)';
+        intro.style.fontSize = '0.9rem';
+        intro.textContent = 'Launch a macOS application window or manage your MacBook session:';
+        modalBody.appendChild(intro);
+
+        const grid = document.createElement('div');
+        grid.className = 'modal-grid';
+
+        const actions = [
+          { label: 'About This Mac', sub: 'Overview & Tangerang specs', win: 'win-profile' },
+          { label: 'Experience & Resume', sub: 'PT Tri Nindya Utama, SMKN 4, Samsung', win: 'win-experience' },
+          { label: 'Honors & Awards', sub: '1st UNIPI, 2nd LKS ITSS, 2nd Storytelling', win: 'win-awards' },
+          { label: 'Finder (6 Projects)', sub: 'AMS BKKBN, Jamu!, LootHub, C#, Android, IoT', win: 'win-projects' },
+          { label: 'Activity Monitor', sub: 'Laravel, React, MySQL, Python, ESP32', win: 'win-skills' },
+          { label: 'Terminal (zsh)', sub: 'Interactive shell commands', win: 'win-terminal' },
+          { label: 'Mail & Links', sub: 'EmailJS, WhatsApp, kael.web.id, GitHub', win: 'win-mail' },
+          { label: 'Lock MacBook Screen', sub: 'Return to Login Landing Page', lock: true }
+        ];
+
+        actions.forEach(function (item) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'endpoint-row';
+          btn.style.textAlign = 'left';
+          btn.innerHTML = '<div><span style="font-weight:700;display:block;">' + item.label + '</span><span class="spec-key">' + item.sub + '</span></div>';
+          btn.addEventListener('click', function () {
+            closeModal();
+            if (item.lock) {
+              lockMacBook();
+            } else if (item.win) {
+              focusWindow(document.getElementById(item.win), true);
+            }
+          });
+          grid.appendChild(btn);
+        });
+
+        modalBody.appendChild(grid);
+        modalBackdrop.hidden = false;
+        appleMenuBtn.setAttribute('aria-expanded', 'true');
+        modalCloseBtn.focus();
+      });
+    });
+  </script>
 </body>
+
 </html>
